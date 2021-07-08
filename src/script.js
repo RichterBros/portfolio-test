@@ -286,7 +286,7 @@ window.addEventListener("resize", () => {
   );
 
   // Update effect composer
-  effectComposer.setSize(sizes.width, sizes.height);
+  // effectComposer.setSize(sizes.width, sizes.height);
 });
 
 const raycaster = new THREE.Raycaster();
@@ -318,19 +318,6 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 console.log(landscape.position.y);
-
-let landscapeOn = () => {
-  gsap.to(landscape.position, {
-    duration: 1,
-    delay: 0,
-    repeat: 0,
-    z: 0,
-    x: 0,
-    y: 0,
-    yoyo: false,
-    ease: "slow(0.5, 0.8)",
-  });
-};
 
 // let plane1On = () => {
 //   gsap.to(plane1.position, {
@@ -529,8 +516,35 @@ window.addEventListener("click", () => {
 //   });
 // };
 const clock = new THREE.Clock();
-console.log(currentIntersect);
+
+// console.log(currentIntersect);
+let landscapeOn = () => {
+  gsap.to(landscape.position, {
+    duration: 1,
+    delay: 0,
+    repeat: 0,
+    z: 0,
+    x: 0,
+    y: 0,
+    yoyo: false,
+    ease: "slow(0.5, 0.8)",
+  });
+};
+// window.addEventListener("load", () => {
+//   gsap.to(landscape.position, {
+//     duration: 2,
+//     delay: 0,
+//     repeat: 0,
+//     z: 0,
+//     x: 0,
+//     y: 0,
+//     yoyo: false,
+//     ease: "slow(0.2, 0.3)",
+//   });
+// });
+
 const tick = () => {
+  landscapeOn();
   //renderer.render(scene, camera);
   // target.x = (1 - mouse.x) * 0.2;
   // target.y = (1 - mouse.y) * 0.2;
@@ -550,6 +564,7 @@ const tick = () => {
   // Default camera setting
   camera.rotation.x += 0.08 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.08 * (target.x - camera.rotation.y);
+  renderer.render(scene, camera);
 
   //Clock
   // console.log(camera.rotation.y);
@@ -598,10 +613,8 @@ const tick = () => {
   // Update materials
   firefliesMaterial.uniforms.uTime.value = elapsedTime;
 
-  landscapeOn();
   // plane1On();
 
-  renderer.render(scene, camera);
   window.requestAnimationFrame(tick);
 };
 
