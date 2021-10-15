@@ -56,7 +56,18 @@ gltfLoader.load("/models/landscape.gltf", (gltf) => {
   scene.add(landscape);
 });
 console.log(landscape);
-
+// window.addEventListener("load", () => {
+//   gsap.to(landscape.position, {
+//     duration: 2,
+//     delay: 0,
+//     repeat: 0,
+//     z: 0,
+//     x: 0,
+//     y: 0,
+//     yoyo: false,
+//     ease: "slow(0.5, 0.8)",
+//   });
+// });
 var landObject = scene.getObjectByName("landscape");
 
 // Fireflies
@@ -530,18 +541,6 @@ let landscapeOn = () => {
     ease: "slow(0.5, 0.8)",
   });
 };
-// window.addEventListener("load", () => {
-//   gsap.to(landscape.position, {
-//     duration: 2,
-//     delay: 0,
-//     repeat: 0,
-//     z: 0,
-//     x: 0,
-//     y: 0,
-//     yoyo: false,
-//     ease: "slow(0.2, 0.3)",
-//   });
-// });
 
 const tick = () => {
   landscapeOn();

@@ -33,7 +33,7 @@ scene.fog = new THREE.Fog(
 );
 
 scene.background = new THREE.Color(debugObject.fogColor);
-
+const testElevation = { height: 0 };
 /**
  * Water
  */
@@ -44,6 +44,7 @@ const waterGeometry = new THREE.PlaneGeometry(25, 10, 20, 20);
 debugObject.depthColor = "#186691";
 debugObject.surfaceColor = "#9bd8ff";
 
+console.log(testElevation.height);
 // Material
 const waterMaterial = new THREE.ShaderMaterial({
   vertexShader: waterVertexShader,
@@ -51,7 +52,7 @@ const waterMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
 
-    uBigWavesElevation: { value: 0.122 },
+    uBigWavesElevation: { value: 0.12 },
     uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
     uBigWavesSpeed: { value: 0.75 },
 
@@ -75,14 +76,15 @@ const waterMaterial = new THREE.ShaderMaterial({
   wireframe: false,
   fog: true,
 });
-
+console.log(waterMaterial);
 const waterMaterial2 = new THREE.ShaderMaterial({
   vertexShader: waterVertexShader,
   fragmentShader: waterFragmentShader,
   uniforms: {
     uTime: { value: 0 },
 
-    uBigWavesElevation: { value: 0.122 },
+    uBigWavesElevation: { value: 0.12 },
+
     uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
     uBigWavesSpeed: { value: 0.75 },
 
@@ -156,11 +158,25 @@ mesh.add(wireframe);
 // };
 // Debug
 gui
+  .add(testElevation, "height")
+  .min(0)
+  .max(1)
+  .step(0.001)
+  .name("testElevation");
+
+gui
   .add(waterMaterial.uniforms.uBigWavesElevation, "value")
   .min(0)
   .max(1)
   .step(0.001)
   .name("uBigWavesElevation");
+gui
+  .add(waterMaterial2.uniforms.uBigWavesElevation, "value")
+  .min(0)
+  .max(1)
+  .step(0.001)
+  .name("uBigWavesElevationWire");
+
 gui
   .add(waterMaterial.uniforms.uBigWavesFrequency.value, "x")
   .min(0)
