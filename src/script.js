@@ -16,7 +16,7 @@ import { Color } from "three";
 import { water2, wireframe2 } from "./water.js";
 
 // Debug
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 console.log(firefliesVertexShader);
 console.log(firefliesFragmentShader);
 
@@ -46,7 +46,7 @@ let mixer = null;
 
 gltfLoader.load("/models/landscape.gltf", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, -5, -5);
+  gltf.scene.position.set(0, -0.2, 1);
 
   scene.add(gltf.scene);
   // model.name = 'model';
@@ -73,7 +73,7 @@ var landObject = scene.getObjectByName("landscape");
 // Fireflies
 // Geometry
 const firefliesGeometry = new THREE.BufferGeometry();
-const firefliesCount = 600;
+const firefliesCount = 6000;
 const positionArray = new Float32Array(firefliesCount * 3);
 const positionArray2 = new Float32Array();
 const scaleArray = new Float32Array(firefliesCount);
@@ -115,16 +115,16 @@ const firefliesMaterial = new THREE.ShaderMaterial({
   depthWrite: false,
 });
 
-gui
-  .add(firefliesMaterial.uniforms.uSize, "value")
-  .min(1)
-  .max(500)
-  .step(1)
-  .name("firefliesSize");
+// gui
+//   .add(firefliesMaterial.uniforms.uSize, "value")
+//   .min(1)
+//   .max(500)
+//   .step(1)
+//   .name("firefliesSize");
 
 //Firefly Points
 const fireflies = new THREE.Points(firefliesGeometry, firefliesMaterial);
-fireflies.position.z = 5;
+fireflies.position.z = 1;
 fireflies.position.y = -0.5;
 scene.add(fireflies);
 
@@ -295,7 +295,8 @@ window.addEventListener("resize", () => {
     window.devicePixelRatio,
     2
   );
-
+  // renderer.domElement.addEventListener("click", onclick, true);
+  // alert("onclick");
   // Update effect composer
   // effectComposer.setSize(sizes.width, sizes.height);
 });
@@ -437,40 +438,62 @@ let toggle = () => {
   clicked = clicked ? false : true;
 };
 
+// const domEvents = new THREEx.domEvents(camera, renderer.domElement);
+
+// domEvents.addEventListener(plane1, "click", (event) => {
+//   material1.wireframe = true;
+// });
+console.log(currentIntersect);
 window.addEventListener("click", () => {
   if (currentIntersect) {
     switch (currentIntersect.object) {
       case plane1:
-        toggle();
-        if (clicked) {
-          gsap.to(camera.position, {
-            duration: 0.5,
-            delay: 0,
-            repeat: 0,
-            // onComplete: onComplete,
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
 
-            z: 5,
-            x: plane1.position.x,
-            y: plane1.position.y,
-            yoyo: false,
-            ease: "expo.out",
-          });
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks on <span> (x), close the modal
 
-          console.log(clicked);
-        } else {
-          gsap.to(camera.position, {
-            duration: 0.5,
-            delay: 0,
-            repeat: 0,
-            // onComplete: onComplete,
-
-            z: 6,
-            x: 0,
-            y: 0,
-            yoyo: false,
-            ease: "expo.out",
-          });
+        var video = document.getElementById("myVideoPlayer");
+        function stopVideo() {
+          video.pause();
+          video.currentTime = 0;
         }
+        span.onclick = function () {
+          stopVideo();
+          modal.style.display = "none";
+        };
+        // toggle();
+        // if (clicked) {
+        //   gsap.to(camera.position, {
+        //     duration: 0.5,
+        //     delay: 0,
+        //     repeat: 0,
+        //     // onComplete: onComplete,
+
+        //     z: 5,
+        //     x: plane1.position.x,
+        //     y: plane1.position.y,
+        //     yoyo: false,
+        //     ease: "expo.out",
+        //   });
+
+        //   console.log(clicked);
+        // } else {
+        //   gsap.to(camera.position, {
+        //     duration: 0.5,
+        //     delay: 0,
+        //     repeat: 0,
+        //     // onComplete: onComplete,
+
+        //     z: 6,
+        //     x: 0,
+        //     y: 0,
+        //     yoyo: false,
+        //     ease: "expo.out",
+        //   });
+        // }
 
         console.log(clicked);
 
@@ -482,36 +505,36 @@ window.addEventListener("click", () => {
       case plane2:
         console.log("clicked on object2");
 
-        toggle();
-        if (clicked) {
-          gsap.to(camera.position, {
-            duration: 0.5,
-            delay: 0,
-            repeat: 0,
-            // onComplete: onComplete,
+        // toggle();
+        // if (clicked) {
+        //   gsap.to(camera.position, {
+        //     duration: 0.5,
+        //     delay: 0,
+        //     repeat: 0,
+        //     // onComplete: onComplete,
 
-            z: 5,
-            x: plane2.position.x,
-            y: plane2.position.y,
-            yoyo: false,
-            ease: "expo.out",
-          });
+        //     z: 5,
+        //     x: plane2.position.x,
+        //     y: plane2.position.y,
+        //     yoyo: false,
+        //     ease: "expo.out",
+        //   });
 
-          console.log(clicked);
-        } else {
-          gsap.to(camera.position, {
-            duration: 0.5,
-            delay: 0,
-            repeat: 0,
-            // onComplete: onComplete,
+        //   console.log(clicked);
+        // } else {
+        //   gsap.to(camera.position, {
+        //     duration: 0.5,
+        //     delay: 0,
+        //     repeat: 0,
+        //     // onComplete: onComplete,
 
-            z: 6,
-            x: 0,
-            y: 0,
-            yoyo: false,
-            ease: "expo.out",
-          });
-        }
+        //     z: 6,
+        //     x: 0,
+        //     y: 0,
+        //     yoyo: false,
+        //     ease: "expo.out",
+        //   });
+        // }
         break;
     }
   }
@@ -543,7 +566,7 @@ let landscapeOn = () => {
 };
 
 const tick = () => {
-  landscapeOn();
+  // landscapeOn();
   //renderer.render(scene, camera);
   // target.x = (1 - mouse.x) * 0.2;
   // target.y = (1 - mouse.y) * 0.2;

@@ -13,7 +13,7 @@ console.log(waterFragmentShader);
  */
 
 // Debug
-const gui = new dat.GUI({ width: 340 });
+// const gui = new dat.GUI({ width: 340 });
 const debugObject = {
   fogNear: 1,
   fogFar: 3,
@@ -157,107 +157,107 @@ mesh.add(wireframe);
 //   fogColor: "#8e99a2",
 // };
 // Debug
-gui
-  .add(testElevation, "height")
-  .min(0)
-  .max(1)
-  .step(0.001)
-  .name("testElevation");
+// gui
+//   .add(testElevation, "height")
+//   .min(0)
+//   .max(1)
+//   .step(0.001)
+//   .name("testElevation");
 
-gui
-  .add(waterMaterial.uniforms.uBigWavesElevation, "value")
-  .min(0)
-  .max(1)
-  .step(0.001)
-  .name("uBigWavesElevation");
-gui
-  .add(waterMaterial2.uniforms.uBigWavesElevation, "value")
-  .min(0)
-  .max(1)
-  .step(0.001)
-  .name("uBigWavesElevationWire");
+// gui
+//   .add(waterMaterial.uniforms.uBigWavesElevation, "value")
+//   .min(0)
+//   .max(1)
+//   .step(0.001)
+//   .name("uBigWavesElevation");
+// gui
+//   .add(waterMaterial2.uniforms.uBigWavesElevation, "value")
+//   .min(0)
+//   .max(1)
+//   .step(0.001)
+//   .name("uBigWavesElevationWire");
 
-gui
-  .add(waterMaterial.uniforms.uBigWavesFrequency.value, "x")
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name("uBigWavesFrequencyX");
-gui
-  .add(waterMaterial.uniforms.uBigWavesFrequency.value, "y")
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name("uBigWavesFrequencyY");
-gui
-  .add(waterMaterial.uniforms.uBigWavesSpeed, "value")
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name("uBigWavesSpeed");
+// gui
+//   .add(waterMaterial.uniforms.uBigWavesFrequency.value, "x")
+//   .min(0)
+//   .max(10)
+//   .step(0.001)
+//   .name("uBigWavesFrequencyX");
+// gui
+//   .add(waterMaterial.uniforms.uBigWavesFrequency.value, "y")
+//   .min(0)
+//   .max(10)
+//   .step(0.001)
+//   .name("uBigWavesFrequencyY");
+// gui
+//   .add(waterMaterial.uniforms.uBigWavesSpeed, "value")
+//   .min(0)
+//   .max(10)
+//   .step(0.001)
+//   .name("uBigWavesSpeed");
 
-gui
-  .add(waterMaterial.uniforms.uSmallWavesElevation, "value")
-  .min(0)
-  .max(1)
-  .step(0.001)
-  .name("uSmallWavesElevation");
-gui
-  .add(waterMaterial.uniforms.uSmallWavesFrequency, "value")
-  .min(0)
-  .max(30)
-  .step(0.001)
-  .name("uSmallWavesFrequency");
-gui
-  .add(waterMaterial.uniforms.uSmallWavesSpeed, "value")
-  .min(0)
-  .max(4)
-  .step(0.001)
-  .name("uSmallWavesSpeed");
-gui
-  .add(waterMaterial.uniforms.uSmallWavesIterations, "value")
-  .min(0)
-  .max(8)
-  .step(1)
-  .name("uSmallWavesIterations");
-gui
-  .addColor(debugObject, "depthColor")
-  .name("depthColor")
-  .onChange(() => {
-    waterMaterial.uniforms.uDepthColor.value.set(debugObject.depthColor);
-  });
+// gui
+//   .add(waterMaterial.uniforms.uSmallWavesElevation, "value")
+//   .min(0)
+//   .max(1)
+//   .step(0.001)
+//   .name("uSmallWavesElevation");
+// gui
+//   .add(waterMaterial.uniforms.uSmallWavesFrequency, "value")
+//   .min(0)
+//   .max(30)
+//   .step(0.001)
+//   .name("uSmallWavesFrequency");
+// gui
+//   .add(waterMaterial.uniforms.uSmallWavesSpeed, "value")
+//   .min(0)
+//   .max(4)
+//   .step(0.001)
+//   .name("uSmallWavesSpeed");
+// gui
+//   .add(waterMaterial.uniforms.uSmallWavesIterations, "value")
+//   .min(0)
+//   .max(8)
+//   .step(1)
+//   .name("uSmallWavesIterations");
+// gui
+//   .addColor(debugObject, "depthColor")
+//   .name("depthColor")
+//   .onChange(() => {
+//     waterMaterial.uniforms.uDepthColor.value.set(debugObject.depthColor);
+//   });
 
-gui
-  .addColor(debugObject, "surfaceColor")
-  .name("surfaceColor")
-  .onChange(() => {
-    waterMaterial.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor);
-  });
+// gui
+//   .addColor(debugObject, "surfaceColor")
+//   .name("surfaceColor")
+//   .onChange(() => {
+//     waterMaterial.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor);
+//   });
 
-gui
-  .add(waterMaterial.uniforms.uColorOffset, "value")
-  .min(0)
-  .max(1)
-  .step(0.001)
-  .name("uColorOffset");
-gui
-  .add(waterMaterial.uniforms.uColorMultiplier, "value")
-  .min(0)
-  .max(10)
-  .step(0.001)
-  .name("uColorMultiplier");
-gui
-  .addColor(debugObject, "fogColor")
-  .name("Fog Color")
-  .onChange(() => {
-    waterMaterial.uniforms.fogColor.value.set(debugObject.fogColor);
-    scene.background.set(debugObject.fogColor);
-    scene.fog = new THREE.Fog(
-      debugObject.fogColor,
-      debugObject.fogNear,
-      debugObject.fogFar
-    );
-  });
+// gui
+//   .add(waterMaterial.uniforms.uColorOffset, "value")
+//   .min(0)
+//   .max(1)
+//   .step(0.001)
+//   .name("uColorOffset");
+// gui
+//   .add(waterMaterial.uniforms.uColorMultiplier, "value")
+//   .min(0)
+//   .max(10)
+//   .step(0.001)
+//   .name("uColorMultiplier");
+// gui
+//   .addColor(debugObject, "fogColor")
+//   .name("Fog Color")
+//   .onChange(() => {
+//     waterMaterial.uniforms.fogColor.value.set(debugObject.fogColor);
+//     scene.background.set(debugObject.fogColor);
+//     scene.fog = new THREE.Fog(
+//       debugObject.fogColor,
+//       debugObject.fogNear,
+//       debugObject.fogFar
+//     );
+//   });
 // Mesh
 
 /**
