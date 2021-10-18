@@ -443,27 +443,58 @@ let toggle = () => {
 // domEvents.addEventListener(plane1, "click", (event) => {
 //   material1.wireframe = true;
 // });
+var images_modal = document.getElementById("myModal");
+
+// var videos_modal = document.getElementById('video-model-div');
+
+// When the user clicks anywhere outside of the modal, close it
+
+window.onclick = function (event) {
+  var video = document.getElementById("myVideoPlayer");
+  function stopVideo() {
+    video.pause();
+    video.currentTime = 0;
+  }
+  if (event.target == images_modal) {
+    images_modal.style.display = "none";
+    stopVideo();
+  }
+  // if (event.target == videos_modal) {
+  //   videos_modal.style.display = "none";
+  // }
+};
+let modals = () => {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  // When the user clicks on <span> (x), close the modal
+
+  var video = document.getElementById("myVideoPlayer");
+  function stopVideo() {
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  span.onclick = function () {
+    stopVideo();
+    modal.style.display = "none";
+  };
+};
+
 console.log(currentIntersect);
 window.addEventListener("click", () => {
   if (currentIntersect) {
     switch (currentIntersect.object) {
       case plane1:
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block";
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        // When the user clicks on <span> (x), close the modal
-
+        modals();
         var video = document.getElementById("myVideoPlayer");
-        function stopVideo() {
-          video.pause();
-          video.currentTime = 0;
+        function playVideo() {
+          video.play();
+          // video.currentTime = 0;
         }
-        span.onclick = function () {
-          stopVideo();
-          modal.style.display = "none";
-        };
+        playVideo();
         // toggle();
         // if (clicked) {
         //   gsap.to(camera.position, {
