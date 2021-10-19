@@ -14,9 +14,7 @@ import rgbFragmentShader from "./shaders/rgb/fragment.glsl";
 import { Vector2 } from "three";
 import { Color } from "three";
 import { water2, wireframe2 } from "./water.js";
-const corsMiddleware = require("../cors");
 
-app.use(corsMiddleware);
 // Debug
 // const gui = new dat.GUI();
 console.log(firefliesVertexShader);
