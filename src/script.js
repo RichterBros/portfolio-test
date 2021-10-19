@@ -615,8 +615,8 @@ const tick = () => {
   );
 
   // Default camera setting
-  camera.rotation.x += 0.08 * (target.y - camera.rotation.x);
-  camera.rotation.y += 0.08 * (target.x - camera.rotation.y);
+  camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
+  camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
   renderer.render(scene, camera);
 
   //Clock

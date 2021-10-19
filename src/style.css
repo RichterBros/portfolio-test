@@ -70,7 +70,7 @@ body {
   transform: scale(1);
 }
 
-.w3-modal-content.w3-animate-opacity.w3-card-3 {
+.w3-modal-content.w3-animate-zoom.w3-card-3 {
   opacity: 1;
   background-color: rgba(255, 0, 0, 0);
   width: 70%;
