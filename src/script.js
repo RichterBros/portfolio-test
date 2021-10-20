@@ -589,12 +589,12 @@ window.addEventListener("click", () => {
         // toggle();
         // if (clicked) {
         //   gsap.to(camera.position, {
-        //     duration: 0.5,
+        //     duration: 2,
         //     delay: 0,
         //     repeat: 0,
         //     // onComplete: onComplete,
 
-        //     z: 5,
+        //     z: 15,
         //     x: plane1.position.x,
         //     y: plane1.position.y,
         //     yoyo: false,
