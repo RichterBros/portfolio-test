@@ -444,7 +444,7 @@ let toggle = () => {
 //   material1.wireframe = true;
 // });
 var images_modal = document.getElementById("myModal");
-
+var images_modalContact = document.getElementById("myModalContact");
 // var videos_modal = document.getElementById('video-model-div');
 
 // When the user clicks anywhere outside of the modal, close it
@@ -464,11 +464,24 @@ window.onclick = function (event) {
   // }
 };
 
-const contact = () => {
+window.onclick = function (event) {
+  if (event.target == images_modalContact) {
+    images_modalContact.style.display = "none";
+    gsap.to(camera.position, {
+      keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+    });
+    clicked = false;
+  }
+  // if (event.target == videos_modal) {
+  //   videos_modal.style.display = "none";
+  // }
+};
+
+const contact = (event) => {
   let contactButton = document.getElementById("contact");
   contactButton.addEventListener("click", function (ev) {
     toggle();
-    // modalsContact();
+
     clicked
       ? gsap.to(camera.position, {
           // duration: 3,
@@ -484,6 +497,8 @@ const contact = () => {
           // ease: "circ.out",
           keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
         });
+
+    clicked ? modalsContact() : (images_modalContact.style.display = "none");
 
     // gsap.to(camera.position, {
     //   duration: 2,
@@ -529,6 +544,10 @@ let modalsContact = () => {
 
   spanContact.onclick = function () {
     modal.style.display = "none";
+    gsap.to(camera.position, {
+      keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+    });
+    clicked = false;
   };
 };
 console.log(currentIntersect);
