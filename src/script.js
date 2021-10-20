@@ -459,29 +459,38 @@ window.onclick = function (event) {
     images_modal.style.display = "none";
     stopVideo();
   }
-  // if (event.target == videos_modal) {
-  //   videos_modal.style.display = "none";
-  // }
-};
-
-window.onclick = function (event) {
   if (event.target == images_modalContact) {
     images_modalContact.style.display = "none";
+    contactButton.innerHTML = "contact";
+
     gsap.to(camera.position, {
       keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
     });
     clicked = false;
   }
-  // if (event.target == videos_modal) {
-  //   videos_modal.style.display = "none";
-  // }
 };
 
-const contact = (event) => {
-  let contactButton = document.getElementById("contact");
-  contactButton.addEventListener("click", function (ev) {
-    toggle();
+// window.onclick = function (event) {
+//   if (event.target == images_modalContact) {
+//     images_modalContact.style.display = "none";
+//     gsap.to(camera.position, {
+//       keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+//     });
+//     clicked = false;
+//   }
+// if (event.target == videos_modal) {
+//   videos_modal.style.display = "none";
+// }
+// };
 
+let contactButton = document.getElementById("contact");
+const contact = (event) => {
+  contactButton.addEventListener("click", function (event) {
+    toggle();
+    clicked
+      ? (contactButton.innerHTML = "back")
+      : (contactButton.innerHTML = "contact");
+    console.log(clicked);
     clicked
       ? gsap.to(camera.position, {
           // duration: 3,
@@ -498,8 +507,20 @@ const contact = (event) => {
           keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
         });
 
-    clicked ? modalsContact() : (images_modalContact.style.display = "none");
-
+    // clicked ? modalsContact() : (images_modal.style.display = "none");
+    if (clicked) {
+      modalsContact();
+      var video = document.getElementById("myVideoPlayer");
+      function stopVideo() {
+        video.pause();
+        video.currentTime = 0;
+      }
+      images_modal.style.display = "none";
+      stopVideo();
+    }
+    if (!clicked) {
+      images_modalContact.style.display = "none";
+    }
     // gsap.to(camera.position, {
     //   duration: 2,
     //   delay: 1,
@@ -544,6 +565,7 @@ let modalsContact = () => {
 
   spanContact.onclick = function () {
     modal.style.display = "none";
+    contactButton.innerHTML = "contact";
     gsap.to(camera.position, {
       keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
     });
@@ -551,6 +573,7 @@ let modalsContact = () => {
   };
 };
 console.log(currentIntersect);
+
 window.addEventListener("click", () => {
   if (currentIntersect) {
     switch (currentIntersect.object) {
@@ -562,6 +585,7 @@ window.addEventListener("click", () => {
           // video.currentTime = 0;
         }
         playVideo();
+
         // toggle();
         // if (clicked) {
         //   gsap.to(camera.position, {
