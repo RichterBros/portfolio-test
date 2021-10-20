@@ -463,6 +463,42 @@ window.onclick = function (event) {
   //   videos_modal.style.display = "none";
   // }
 };
+
+const contact = () => {
+  let contactButton = document.getElementById("contact");
+  contactButton.addEventListener("click", function (ev) {
+    toggle();
+    // modalsContact();
+    clicked
+      ? gsap.to(camera.position, {
+          // duration: 3,
+          // y: 5,
+          // z: 2,
+          // ease: "circ.out",
+          keyframes: [{ y: 3, z: -3, duration: 1, ease: "power3.inOut" }],
+        })
+      : gsap.to(camera.position, {
+          // duration: 3,
+          // y: 5,
+          // z: 2,
+          // ease: "circ.out",
+          keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+        });
+
+    // gsap.to(camera.position, {
+    //   duration: 2,
+    //   delay: 1,
+    //   repeat: 0,
+
+    //   z: 0,
+    //   x: 0,
+    //   y: 0,
+    //   yoyo: false,
+    //   ease: "circ.out",
+    // });
+  });
+};
+contact();
 let modals = () => {
   var modal = document.getElementById("myModal");
   modal.style.display = "block";
@@ -482,7 +518,19 @@ let modals = () => {
     modal.style.display = "none";
   };
 };
+//Contact modal
+let modalsContact = () => {
+  var modal = document.getElementById("myModalContact");
+  modal.style.display = "block";
 
+  // Get the <span> element that closes the modal
+  var spanContact = document.getElementsByClassName("closeContact")[0];
+  // When the user clicks on <span> (x), close the modal
+
+  spanContact.onclick = function () {
+    modal.style.display = "none";
+  };
+};
 console.log(currentIntersect);
 window.addEventListener("click", () => {
   if (currentIntersect) {
