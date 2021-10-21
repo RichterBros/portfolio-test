@@ -549,7 +549,8 @@ let modals = () => {
   var span = document.getElementsByClassName("close")[0];
   // When the user clicks on <span> (x), close the modal
 
-  var video = document.getElementById("myVideoPlayer");
+  var video = document.getElementById("videoclip");
+
   function stopVideo() {
     video.pause();
     video.currentTime = 0;
@@ -579,51 +580,37 @@ let modalsContact = () => {
   };
 };
 console.log(currentIntersect);
+// var video = document.getElementById("myVideoPlayer");
+// function playVideo() {
+//   video.play();
+// }
 
+// var videobutton = document.getElementById("videolink1");
+var videocontainer = document.getElementById("videoclip");
+var videosource = document.getElementById("mp4video");
+var newmp4 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854784/FbStartBright_video_V9_ym7azq.mp4";
+
+var newmp42 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
+// document.getElementById("videolink1");
 window.addEventListener("click", () => {
   if (currentIntersect) {
     switch (currentIntersect.object) {
       case plane1:
         modals();
-        var video = document.getElementById("myVideoPlayer");
-        function playVideo() {
-          video.play();
-          // video.currentTime = 0;
-        }
-        playVideo();
-
-        // toggle();
-        // if (clicked) {
-        //   gsap.to(camera.position, {
-        //     duration: 2,
-        //     delay: 0,
-        //     repeat: 0,
-        //     // onComplete: onComplete,
-
-        //     z: 15,
-        //     x: plane1.position.x,
-        //     y: plane1.position.y,
-        //     yoyo: false,
-        //     ease: "expo.out",
-        //   });
-
-        //   console.log(clicked);
-        // } else {
-        //   gsap.to(camera.position, {
-        //     duration: 0.5,
-        //     delay: 0,
-        //     repeat: 0,
-        //     // onComplete: onComplete,
-
-        //     z: 6,
-        //     x: 0,
-        //     y: 0,
-        //     yoyo: false,
-        //     ease: "expo.out",
-        //   });
+        // var video = document.getElementById("myVideoPlayer");
+        // function playVideo() {
+        //   video.play();
         // }
+        // playVideo();
 
-        console.log(clicked);
+        // console.log(clicked);
+        // videocontainer.pause();
+        videosource.setAttribute("src", newmp4);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
 
         console.log(plane1.position.z);
 
@@ -632,35 +619,12 @@ window.addEventListener("click", () => {
 
       case plane2:
         console.log("clicked on object2");
+        modals();
+        videosource.setAttribute("src", newmp42);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
 
-        toggle2();
-        if (clicked2) {
-          // gsap.to(camera.position, {
-          //   duration: 2,
-          //   delay: 0,
-          //   repeat: 0,
-          // onComplete: onComplete,
-          //   z: 10,
-          //   y: 1,
-          //   yoyo: false,
-          //   ease: "expo.out",
-          // });
-          // clicked2 = true;
-          // console.log(clicked2);
-        } else {
-          // gsap.to(camera.position, {
-          //   duration: 2,
-          //   delay: 0,
-          //   repeat: 0,
-          //   // onComplete: onComplete,
-          //   z: 6,
-          //   x: 0,
-          //   y: 0,
-          //   yoyo: false,
-          //   ease: "expo.out",
-          // });
-          // console.log(clicked2);
-        }
         break;
     }
   }

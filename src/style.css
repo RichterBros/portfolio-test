@@ -143,4 +143,9 @@ body {
 
 .modalTitle {
   font-family: "Space Mono", monospace;
+  white-space: nowrap;
+}
+video {
+  width: 100%;
+  height: auto;
 }
