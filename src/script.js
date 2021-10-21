@@ -635,34 +635,31 @@ window.addEventListener("click", () => {
 
         toggle2();
         if (clicked2) {
-          gsap.to(camera.position, {
-            duration: 2,
-            delay: 0,
-            repeat: 0,
-            // onComplete: onComplete,
-
-            z: 10,
-            y: 3,
-
-            yoyo: false,
-            ease: "expo.out",
-          });
-          clicked2 = true;
-          console.log(clicked2);
+          // gsap.to(camera.position, {
+          //   duration: 2,
+          //   delay: 0,
+          //   repeat: 0,
+          // onComplete: onComplete,
+          //   z: 10,
+          //   y: 1,
+          //   yoyo: false,
+          //   ease: "expo.out",
+          // });
+          // clicked2 = true;
+          // console.log(clicked2);
         } else {
-          gsap.to(camera.position, {
-            duration: 0.5,
-            delay: 0,
-            repeat: 0,
-            // onComplete: onComplete,
-
-            z: 6,
-            x: 0,
-            y: 0,
-            yoyo: false,
-            ease: "expo.out",
-          });
-          console.log(clicked2);
+          // gsap.to(camera.position, {
+          //   duration: 2,
+          //   delay: 0,
+          //   repeat: 0,
+          //   // onComplete: onComplete,
+          //   z: 6,
+          //   x: 0,
+          //   y: 0,
+          //   yoyo: false,
+          //   ease: "expo.out",
+          // });
+          // console.log(clicked2);
         }
         break;
     }
