@@ -90,6 +90,7 @@ body {
   width: 70%;
   text-align: center;
   font-family: "Space Mono", monospace;
+  z-index: -999;
 }
 
 .vid {
@@ -130,7 +131,7 @@ body {
   flex: 6;
 }
 
-.contact {
+.contactButton {
   margin-top: 0px;
   cursor: pointer;
   background-color: rgb(4, 110, 114);

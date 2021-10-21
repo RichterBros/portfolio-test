@@ -457,8 +457,8 @@ var images_modalContact = document.getElementById("myModalContact");
 window.onclick = function (event) {
   var video = document.getElementById("myVideoPlayer");
   function stopVideo() {
-    video.pause();
-    video.currentTime = 0;
+    videocontainer.pause();
+    videocontainer.currentTime = 0;
   }
   if (event.target == images_modal) {
     images_modal.style.display = "none";
@@ -518,8 +518,8 @@ const contact = (event) => {
       modalsContact();
       var video = document.getElementById("myVideoPlayer");
       function stopVideo() {
-        video.pause();
-        video.currentTime = 0;
+        videocontainer.pause();
+        videocontainer.currentTime = 0;
       }
       images_modal.style.display = "none";
       stopVideo();
@@ -548,15 +548,21 @@ let modals = () => {
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
   // When the user clicks on <span> (x), close the modal
-
+  var modalEdge = document.getElementsByClassName(
+    "w3-modal-content w3-animate-zoom w3-card-3"
+  )[0];
   var video = document.getElementById("videoclip");
 
   function stopVideo() {
-    video.pause();
-    video.currentTime = 0;
+    videocontainer.pause();
+    videocontainer.currentTime = 0;
   }
 
   span.onclick = function () {
+    stopVideo();
+    modal.style.display = "none";
+  };
+  modalEdge.onclick = function () {
     stopVideo();
     modal.style.display = "none";
   };
@@ -606,7 +612,7 @@ window.addEventListener("click", () => {
         // playVideo();
 
         // console.log(clicked);
-        // videocontainer.pause();
+
         videosource.setAttribute("src", newmp4);
         videocontainer.load();
         console.log(videosource);
