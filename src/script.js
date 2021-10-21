@@ -438,6 +438,11 @@ let toggle = () => {
   clicked = clicked ? false : true;
 };
 
+let clicked2 = false;
+let toggle2 = () => {
+  clicked2 = clicked2 ? false : true;
+};
+
 // const domEvents = new THREEx.domEvents(camera, renderer.domElement);
 
 // domEvents.addEventListener(plane1, "click", (event) => {
@@ -487,6 +492,7 @@ let contactButton = document.getElementById("contact");
 const contact = (event) => {
   contactButton.addEventListener("click", function (event) {
     toggle();
+    clicked2 = false;
     clicked
       ? (contactButton.innerHTML = "back")
       : (contactButton.innerHTML = "contact");
@@ -627,36 +633,37 @@ window.addEventListener("click", () => {
       case plane2:
         console.log("clicked on object2");
 
-        // toggle();
-        // if (clicked) {
-        //   gsap.to(camera.position, {
-        //     duration: 0.5,
-        //     delay: 0,
-        //     repeat: 0,
-        //     // onComplete: onComplete,
+        toggle2();
+        if (clicked2) {
+          gsap.to(camera.position, {
+            duration: 2,
+            delay: 0,
+            repeat: 0,
+            // onComplete: onComplete,
 
-        //     z: 5,
-        //     x: plane2.position.x,
-        //     y: plane2.position.y,
-        //     yoyo: false,
-        //     ease: "expo.out",
-        //   });
+            z: 10,
+            y: 3,
 
-        //   console.log(clicked);
-        // } else {
-        //   gsap.to(camera.position, {
-        //     duration: 0.5,
-        //     delay: 0,
-        //     repeat: 0,
-        //     // onComplete: onComplete,
+            yoyo: false,
+            ease: "expo.out",
+          });
+          clicked2 = true;
+          console.log(clicked2);
+        } else {
+          gsap.to(camera.position, {
+            duration: 0.5,
+            delay: 0,
+            repeat: 0,
+            // onComplete: onComplete,
 
-        //     z: 6,
-        //     x: 0,
-        //     y: 0,
-        //     yoyo: false,
-        //     ease: "expo.out",
-        //   });
-        // }
+            z: 6,
+            x: 0,
+            y: 0,
+            yoyo: false,
+            ease: "expo.out",
+          });
+          console.log(clicked2);
+        }
         break;
     }
   }
