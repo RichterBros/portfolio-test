@@ -5,8 +5,8 @@ import * as dat from "dat.gui";
 import waterVertexShader from "./shaders/water/vertex.glsl";
 import waterFragmentShader from "./shaders/water/fragment.glsl";
 import { Color } from "three";
-console.log(waterVertexShader);
-console.log(waterFragmentShader);
+// console.log(waterVertexShader);
+// console.log(waterFragmentShader);
 
 /**
  * Base

@@ -12,6 +12,7 @@ import firefliesFragmentShader from "./shaders/fireflies/fragment.glsl";
 import rgbVertexShader from "./shaders/rgb/vertex.glsl";
 import rgbFragmentShader from "./shaders/rgb/fragment.glsl";
 import { Vector2 } from "three";
+import { Vector3 } from "three";
 import { Color } from "three";
 import { water2, wireframe2 } from "./water.js";
 
@@ -153,6 +154,9 @@ const canvas = document.querySelector("canvas.webgl");
 // Textures
 let texture = new THREE.TextureLoader().load("/textures/FbStart_thumb.jpg");
 let texture2 = new THREE.TextureLoader().load("/textures/BoxTrolls_thumb.jpg");
+let texture3 = new THREE.TextureLoader().load(
+  "/textures/amazon_huddles_thumb.jpg"
+);
 console.log(texture);
 // immediately use the texture for material creation
 // const material = new THREE.MeshBasicMaterial({ map: texture });
@@ -163,11 +167,9 @@ const offSet = new Vector2(0, 0); // Mesh position
 const planeGeometry = new THREE.PlaneGeometry(1.0, 0.5, 10, 10);
 // console.log(geometry.parameters.width);
 
-let textureArr = [texture, texture2];
+// let textureArr = [texture, texture2];
 
-console.log(texture.id);
-
-console.log(textureArr);
+// console.log(texture.id);
 
 // switch (tex) {
 //   case textureArr[0].id === 4:
@@ -186,8 +188,6 @@ console.log(textureArr);
 //       tex = texture2;
 //   }
 // }
-let tex = null;
-console.log(tex);
 
 const material1 = new THREE.ShaderMaterial({
   uniforms: {
@@ -212,38 +212,56 @@ const material1 = new THREE.ShaderMaterial({
   // transparent: true,
 });
 
-const material2 = new THREE.ShaderMaterial({
-  uniforms: {
-    // uTime: { value: 0 },
-    uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-    // uSize: { value: 50 },
-    uTexture: {
-      value: texture2,
-    },
-    // uAlpha: { value: 0.0 },
-    uOffset: { value: new THREE.Vector2(0.0, 0.0) },
-    // uMouseTest: { value: new THREE.Vector2(0.0, 0.0) },
-  },
-  vertexShader: rgbVertexShader,
-  fragmentShader: rgbFragmentShader,
-  side: THREE.DoubleSide,
-  wireframe: false,
+// const material2 = new THREE.ShaderMaterial({
+//   uniforms: {
+//     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
 
-  // opacity: 0.5,
-  // transparent: true,
-});
+//     uTexture: {
+//       value: texture2,
+//     },
+
+//     uOffset: { value: new THREE.Vector2(0.0, 0.0) },
+//   },
+//   vertexShader: rgbVertexShader,
+//   fragmentShader: rgbFragmentShader,
+//   side: THREE.DoubleSide,
+//   wireframe: false,
+// });
+let material2 = material1.clone();
+material2.uniforms.uTexture.value = texture2;
+
+let material3 = material1.clone();
+material3.uniforms.uTexture.value = texture3;
+console.log(material2.uniforms.uTexture.value);
+
 const plane1 = new THREE.Mesh(planeGeometry, material1);
 
 const plane2 = new THREE.Mesh(planeGeometry, material2);
-// for (let i = 0; i < textureArr.length; i++) {
-//   switch (textureArr[i]) {
-//     case textureArr[0].id === 4 && plane1.id === 22:
-//       tex = material1.uniforms.uTexture.value = texture;
-//       break;
-//     case textureArr[1].id === 5 && plane2.id === 23:
-//       tex = material1.uniforms.uTexture.value = texture2;
+const plane3 = new THREE.Mesh(planeGeometry, material3);
+// let planeArr = [];
+// function add(new_plane) {
+//   for (let i = -5; i < 10; i++) {
+//     const planeTest = new THREE.Mesh(planeGeometry, material2);
+//     let planeClone = planeTest.clone();
+
+//     planeClone.position.y = 1;
+//     planeClone.position.x = i += 0.5;
+//     planeClone.position.z = 2;
+//     planeClone.name = "planeTest" + [i];
+//     scene.add(planeClone);
+//     planeClone.name == "planeTest0" ? console.log("yes") : console.log("no");
+//     planeArr.push(planeClone);
+//     console.log(i);
 //   }
+//   return planeArr;
 // }
+// add();
+// console.log(add());
+// console.log(planeArr);
+// console.log(planeArr[5].name);
+// console.log(planeArr[0].material.uniforms.uTexture.value);
+// planeArr[3].material = material2;
+
 // const material3 = new THREE.MeshBasicMaterial({
 //   color: "blue",
 // });
@@ -257,7 +275,8 @@ const plane2 = new THREE.Mesh(planeGeometry, material2);
 plane1.position.x = 0;
 plane1.position.z = 3;
 plane1.name = "plane1";
-// console.log(sizesTest);
+// plane1.material.uniforms.uTexture.value = texture;
+
 scene.add(plane1);
 
 // const plane2 = new THREE.Mesh(planeGeometry, material2);
@@ -272,6 +291,14 @@ plane2.position.z = 3;
 plane2.name = "plane2";
 // console.log(sizesTest);
 scene.add(plane2);
+
+plane3.position.x = -2;
+plane3.position.z = 3;
+plane3.name = "plane1";
+// plane1.material.uniforms.uTexture.value = texture;
+
+scene.add(plane3);
+
 // Sizes
 const sizes = {
   width: window.innerWidth,
@@ -351,7 +378,7 @@ window.addEventListener("mousemove", (event) => {
 
   raycaster.setFromCamera(mouse, camera);
 
-  const objectsToTest = [plane1, plane2];
+  const objectsToTest = [plane1, plane2, plane3];
   const intersects = raycaster.intersectObjects(objectsToTest);
 
   // object1.name = "object1";
@@ -599,20 +626,20 @@ var newmp4 =
 
 var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
+
+var newmp43 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634950067/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
 // document.getElementById("videolink1");
 window.addEventListener("click", () => {
+  var title = document.getElementById("title");
+  var desc = document.getElementById("desc");
   if (currentIntersect) {
     switch (currentIntersect.object) {
       case plane1:
         modals();
-        // var video = document.getElementById("myVideoPlayer");
-        // function playVideo() {
-        //   video.play();
-        // }
-        // playVideo();
 
-        // console.log(clicked);
-
+        title.innerHTML = "FACEBOOK START";
+        desc.innerHTML = "Animation / effects";
         videosource.setAttribute("src", newmp4);
         videocontainer.load();
         console.log(videosource);
@@ -626,7 +653,24 @@ window.addEventListener("click", () => {
       case plane2:
         console.log("clicked on object2");
         modals();
+
+        title.innerHTML = "BOXTROLLS";
+
+        desc.innerHTML = "Animation / comp of all elements";
         videosource.setAttribute("src", newmp42);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane3:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "AMAZON";
+
+        desc.innerHTML = "Animation / comp of all elements";
+        videosource.setAttribute("src", newmp43);
         videocontainer.load();
         console.log(videosource);
         videocontainer.play();
@@ -671,12 +715,16 @@ const tick = () => {
   target.y = mouse.y * 0.08;
 
   material1.uniforms.uOffset.value.set(
-    (target.x - offSet.x) * 0.5,
-    -(target.y - offSet.y) * 0.5
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
   );
   material2.uniforms.uOffset.value.set(
-    (target.x - offSet.x) * 0.5,
-    -(target.y - offSet.y) * 0.5
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material3.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
   );
 
   // Default camera setting
