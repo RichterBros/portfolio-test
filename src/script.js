@@ -42,6 +42,7 @@ const scene = new THREE.Scene();
 const gltfLoader = new GLTFLoader();
 
 let landscape = new THREE.Object3D();
+let ufo = new THREE.Object3D();
 
 let mixer = null;
 
@@ -56,19 +57,29 @@ gltfLoader.load("/models/landscape.gltf", (gltf) => {
   // Add gltf model to scene
   scene.add(landscape);
 });
-console.log(landscape);
-// window.addEventListener("load", () => {
-//   gsap.to(landscape.position, {
-//     duration: 2,
-//     delay: 0,
-//     repeat: 0,
-//     z: 0,
-//     x: 0,
-//     y: 0,
-//     yoyo: false,
-//     ease: "slow(0.5, 0.8)",
-//   });
-// });
+
+gltfLoader.load("/models/ufo3.gltf", (gltf) => {
+  gltf.scene.scale.set(0.025, 0.025, 0.025);
+  gltf.scene.position.set(0, -1, 4);
+
+  ufo = gltf.scene;
+
+  // Add gltf model to scene
+  scene.add(ufo);
+});
+console.log(ufo);
+window.addEventListener("load", () => {
+  gsap.to(landscape.position, {
+    duration: 2,
+    delay: 0,
+    repeat: 0,
+    z: 0,
+    x: 0,
+    y: 0,
+    yoyo: false,
+    ease: "slow(0.5, 0.8)",
+  });
+});
 var landObject = scene.getObjectByName("landscape");
 
 // Fireflies
@@ -735,9 +746,17 @@ const tick = () => {
   //Clock
   // console.log(camera.rotation.y);
   const elapsedTime = clock.getElapsedTime();
+  // ufo.position.x = Math.sin(elapsedTime / 3);
+  // ufo.position.z = Math.sin(elapsedTime / 15);
 
+  const ufoAngle = -elapsedTime * 0.18;
+  ufo.position.y = Math.sin(elapsedTime);
+  ufo.position.x = Math.cos(ufoAngle) * (7 + Math.sin(elapsedTime * 0.32));
+  ufo.position.z = Math.sin(ufoAngle) * (7 + Math.sin(elapsedTime * 0.5));
+  ufo.rotation.y = elapsedTime;
+
+  // ufo.position.y = Math.sin(elapsedTime * 4) + Math.sin(elapsedTime * 2.5);
   // Cast a ray
-
   // raycaster.setFromCamera(mouse, camera);
 
   // const objectsToTest = [plane1];
