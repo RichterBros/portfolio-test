@@ -58,9 +58,9 @@ gltfLoader.load("/models/landscape.gltf", (gltf) => {
   scene.add(landscape);
 });
 
-gltfLoader.load("/models/ufo3.gltf", (gltf) => {
+gltfLoader.load("/models/ufo3.glb", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, -1, 4);
+  gltf.scene.position.set(0, -1, 0);
 
   ufo = gltf.scene;
 
@@ -68,18 +68,18 @@ gltfLoader.load("/models/ufo3.gltf", (gltf) => {
   scene.add(ufo);
 });
 console.log(ufo);
-window.addEventListener("load", () => {
-  gsap.to(landscape.position, {
-    duration: 2,
-    delay: 0,
-    repeat: 0,
-    z: 0,
-    x: 0,
-    y: 0,
-    yoyo: false,
-    ease: "slow(0.5, 0.8)",
-  });
-});
+// window.addEventListener("load", () => {
+//   gsap.to(landscape.position, {
+//     duration: 2,
+//     delay: 0,
+//     repeat: 0,
+//     z: 0,
+//     x: 0,
+//     y: 0,
+//     yoyo: false,
+//     ease: "slow(0.5, 0.8)",
+//   });
+// });
 var landObject = scene.getObjectByName("landscape");
 
 // Fireflies
@@ -168,14 +168,19 @@ let texture2 = new THREE.TextureLoader().load("/textures/BoxTrolls_thumb.jpg");
 let texture3 = new THREE.TextureLoader().load(
   "/textures/amazon_huddles_thumb.jpg"
 );
-console.log(texture);
+let texture4 = new THREE.TextureLoader().load(
+  "/textures/nikeAbstract_thumb.jpg"
+);
+
+let texture5 = new THREE.TextureLoader().load("/textures/Fox_Sports_thumb.jpg");
+
 // immediately use the texture for material creation
 // const material = new THREE.MeshBasicMaterial({ map: texture });
-console.log(texture2);
+
 const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
 
-const planeGeometry = new THREE.PlaneGeometry(1.0, 0.5, 10, 10);
+const planeGeometry = new THREE.PlaneGeometry(0.5, 0.25, 10, 10);
 // console.log(geometry.parameters.width);
 
 // let textureArr = [texture, texture2];
@@ -245,71 +250,112 @@ let material3 = material1.clone();
 material3.uniforms.uTexture.value = texture3;
 console.log(material2.uniforms.uTexture.value);
 
+let material4 = material1.clone();
+material4.uniforms.uTexture.value = texture4;
+
+let material5 = material1.clone();
+material5.uniforms.uTexture.value = texture5;
+
 const plane1 = new THREE.Mesh(planeGeometry, material1);
 
 const plane2 = new THREE.Mesh(planeGeometry, material2);
 const plane3 = new THREE.Mesh(planeGeometry, material3);
-// let planeArr = [];
-// function add(new_plane) {
-//   for (let i = -5; i < 10; i++) {
-//     const planeTest = new THREE.Mesh(planeGeometry, material2);
-//     let planeClone = planeTest.clone();
 
-//     planeClone.position.y = 1;
-//     planeClone.position.x = i += 0.5;
-//     planeClone.position.z = 2;
-//     planeClone.name = "planeTest" + [i];
-//     scene.add(planeClone);
-//     planeClone.name == "planeTest0" ? console.log("yes") : console.log("no");
-//     planeArr.push(planeClone);
-//     console.log(i);
-//   }
-//   return planeArr;
-// }
-// add();
-// console.log(add());
-// console.log(planeArr);
-// console.log(planeArr[5].name);
-// console.log(planeArr[0].material.uniforms.uTexture.value);
-// planeArr[3].material = material2;
+const plane4 = new THREE.Mesh(planeGeometry, material4);
 
-// const material3 = new THREE.MeshBasicMaterial({
-//   color: "blue",
-// });
-// const plane1 = new THREE.Mesh(planeGeometry, material1);
-//plane1.position.y = 3;
-// sizesTest.set(0.2, 0.1);
-// offSet.set(0, 0);
-// plane1.scale.set(sizesTest.x, sizesTest.y);
-// plane1.position.set(offSet.x, offSet.y, 0);
-
-plane1.position.x = 0;
-plane1.position.z = 3;
-plane1.name = "plane1";
-// plane1.material.uniforms.uTexture.value = texture;
+const plane5 = new THREE.Mesh(planeGeometry, material5);
+const plane6 = new THREE.Mesh(planeGeometry, material3);
+const plane7 = new THREE.Mesh(planeGeometry, material3);
+const plane8 = new THREE.Mesh(planeGeometry, material3);
+// plane1.position.x = 0;
+// plane1.position.y = 1.5;
+// plane1.position.z = 3;
+// plane1.name = "plane1";
 
 scene.add(plane1);
 
-// const plane2 = new THREE.Mesh(planeGeometry, material2);
-//plane2.position.y = 3;
-// sizesTest.set(0.2, 0.2);
-// offSet.set(0, 0);
-// plane2.scale.set(sizesTest.x, sizesTest.y);
-// plane2.position.set(offSet.x, offSet.y, 0);
-console.log(plane2);
-plane2.position.x = 2;
-plane2.position.z = 3;
-plane2.name = "plane2";
-// console.log(sizesTest);
+// plane2.position.x = 2;
+// plane2.position.y = 1.5;
+// plane2.position.z = 3;
+// plane2.name = "plane2";
+
 scene.add(plane2);
 
-plane3.position.x = -2;
-plane3.position.z = 3;
-plane3.name = "plane1";
-// plane1.material.uniforms.uTexture.value = texture;
+// plane3.position.x = -2;
+// plane3.position.y = 1.5;
+// plane3.position.z = 3;
+// plane3.name = "plane1";
 
 scene.add(plane3);
 
+// plane4.position.x = 0;
+// plane4.position.y = 0.5;
+// plane4.position.z = 3;
+// plane4.name = "plane4";
+
+scene.add(plane4);
+
+// plane5.position.x = 2;
+// plane5.position.y = 0.5;
+// plane5.position.z = 3;
+plane5.name = "plane5";
+
+scene.add(plane5);
+
+// plane6.position.x = -2;
+// plane6.position.y = 0.5;
+// plane6.position.z = 3;
+plane6.name = "plane6";
+
+scene.add(plane6);
+// scene.add(plane7);
+// scene.add(plane8);
+
+let planeArr = [[plane1, plane2, plane3, plane4, plane5], [plane6]];
+let pos = -2.4;
+let pos2 = -2.4;
+const planePos = () => {
+  planeArr[0].forEach((plane) => {
+    pos++;
+    plane.position.y = 1;
+    plane.position.z = 4;
+    plane.position.x = pos -= 0.2;
+  });
+  planeArr[1].forEach((plane) => {
+    pos2++;
+    plane.position.y = 0.5;
+    plane.position.z = 4;
+    plane.position.x = pos2 -= 0.2;
+  });
+};
+planePos();
+
+// let pos2 = 2.3;
+// const planePos2 = () => {
+//   planeArr[1].forEach((plane) => {
+//     pos2++;
+//     plane.position.y = 1;
+//     plane.position.z = 4;
+//     plane.position.x += pos2 -= 1.8;
+//   });
+// };
+// planePos2();
+
+// const planePos2 = () => {
+//   planeArr[1].forEach((plane) => {
+//     pos++;
+//     plane.position.y = 0;
+//     plane.position.z = 4;
+//     plane.position.x += pos -= 1.8;
+//   });
+// };
+// planePos2();
+console.log(planeArr);
+
+// const group1 = new THREE.Group();
+// group1.add(planeArr);
+
+// scene.add(group1);
 // Sizes
 const sizes = {
   width: window.innerWidth,
@@ -389,7 +435,7 @@ window.addEventListener("mousemove", (event) => {
 
   raycaster.setFromCamera(mouse, camera);
 
-  const objectsToTest = [plane1, plane2, plane3];
+  const objectsToTest = [plane1, plane2, plane3, plane4, plane5];
   const intersects = raycaster.intersectObjects(objectsToTest);
 
   // object1.name = "object1";
@@ -640,6 +686,10 @@ var newmp42 =
 
 var newmp43 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634950067/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
+
+var newmp44 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635202662/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
+
 // document.getElementById("videolink1");
 window.addEventListener("click", () => {
   var title = document.getElementById("title");
@@ -682,6 +732,19 @@ window.addEventListener("click", () => {
 
         desc.innerHTML = "Animation / comp of all elements";
         videosource.setAttribute("src", newmp43);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane4:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "NIKE ABSTRACT";
+
+        desc.innerHTML = "Animation / comp of all elements";
+        videosource.setAttribute("src", newmp44);
         videocontainer.load();
         console.log(videosource);
         videocontainer.play();
@@ -734,6 +797,16 @@ const tick = () => {
     -(target.y - offSet.y) * 0.3
   );
   material3.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
+  material4.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
+  material5.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
     -(target.y - offSet.y) * 0.3
   );
