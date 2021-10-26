@@ -150,12 +150,12 @@ scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.castShadow = false;
-directionalLight.shadow.mapSize.set(1024, 1024);
-directionalLight.shadow.camera.far = 15;
-directionalLight.shadow.camera.left = -7;
-directionalLight.shadow.camera.top = 7;
-directionalLight.shadow.camera.right = 7;
-directionalLight.shadow.camera.bottom = -7;
+// directionalLight.shadow.mapSize.set(1024, 1024);
+// directionalLight.shadow.camera.far = 15;
+// directionalLight.shadow.camera.left = -7;
+// directionalLight.shadow.camera.top = 7;
+// directionalLight.shadow.camera.right = 7;
+// directionalLight.shadow.camera.bottom = -7;
 directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
 
@@ -173,6 +173,42 @@ let texture4 = new THREE.TextureLoader().load(
 );
 
 let texture5 = new THREE.TextureLoader().load("/textures/Fox_Sports_thumb.jpg");
+
+let texture6 = new THREE.TextureLoader().load("/textures/IbmWeb_thumb.jpg");
+
+let texture7 = new THREE.TextureLoader().load("/textures/Paranorman_thumb.jpg");
+let texture8 = new THREE.TextureLoader().load(
+  "/textures/Nissan_Holiday_Spirit_Everyone_thumb.jpg"
+);
+let texture9 = new THREE.TextureLoader().load("/textures/reactPillows.jpg");
+
+let texture10 = new THREE.TextureLoader().load("/textures/KIA_thumb.jpg");
+let texture11 = new THREE.TextureLoader().load("/textures/Kroger_Digital.jpg");
+let texture12 = new THREE.TextureLoader().load(
+  "/textures/origin_genomics_thumb.jpg"
+);
+let texture13 = new THREE.TextureLoader().load(
+  "/textures/HouseSpecial_Kroger_thumb.jpg"
+);
+let texture14 = new THREE.TextureLoader().load("/textures/BTeam_thumb.jpg");
+let texture15 = new THREE.TextureLoader().load(
+  "/textures/safetyDemo_thumb.jpg"
+);
+let texture16 = new THREE.TextureLoader().load(
+  "/textures/safetyDemo_thumb.jpg"
+);
+let texture17 = new THREE.TextureLoader().load(
+  "/textures/safetyDemo_thumb.jpg"
+);
+let texture18 = new THREE.TextureLoader().load(
+  "/textures/safetyDemo_thumb.jpg"
+);
+let texture19 = new THREE.TextureLoader().load(
+  "/textures/safetyDemo_thumb.jpg"
+);
+let texture20 = new THREE.TextureLoader().load(
+  "/textures/safetyDemo_thumb.jpg"
+);
 
 // immediately use the texture for material creation
 // const material = new THREE.MeshBasicMaterial({ map: texture });
@@ -248,13 +284,57 @@ material2.uniforms.uTexture.value = texture2;
 
 let material3 = material1.clone();
 material3.uniforms.uTexture.value = texture3;
-console.log(material2.uniforms.uTexture.value);
 
 let material4 = material1.clone();
 material4.uniforms.uTexture.value = texture4;
 
 let material5 = material1.clone();
 material5.uniforms.uTexture.value = texture5;
+
+let material6 = material1.clone();
+material6.uniforms.uTexture.value = texture6;
+
+let material7 = material1.clone();
+material7.uniforms.uTexture.value = texture7;
+
+let material8 = material1.clone();
+material8.uniforms.uTexture.value = texture8;
+
+let material9 = material1.clone();
+material9.uniforms.uTexture.value = texture9;
+
+let material10 = material1.clone();
+material10.uniforms.uTexture.value = texture10;
+
+let material11 = material1.clone();
+material11.uniforms.uTexture.value = texture11;
+
+let material12 = material1.clone();
+material12.uniforms.uTexture.value = texture12;
+
+let material13 = material1.clone();
+material13.uniforms.uTexture.value = texture13;
+
+let material14 = material1.clone();
+material14.uniforms.uTexture.value = texture14;
+
+let material15 = material1.clone();
+material15.uniforms.uTexture.value = texture15;
+
+let material16 = material1.clone();
+material16.uniforms.uTexture.value = texture16;
+
+let material17 = material1.clone();
+material17.uniforms.uTexture.value = texture17;
+
+let material18 = material1.clone();
+material18.uniforms.uTexture.value = texture18;
+
+let material19 = material1.clone();
+material19.uniforms.uTexture.value = texture19;
+
+let material20 = material1.clone();
+material20.uniforms.uTexture.value = texture20;
 
 const plane1 = new THREE.Mesh(planeGeometry, material1);
 
@@ -264,62 +344,69 @@ const plane3 = new THREE.Mesh(planeGeometry, material3);
 const plane4 = new THREE.Mesh(planeGeometry, material4);
 
 const plane5 = new THREE.Mesh(planeGeometry, material5);
-const plane6 = new THREE.Mesh(planeGeometry, material3);
-const plane7 = new THREE.Mesh(planeGeometry, material3);
-const plane8 = new THREE.Mesh(planeGeometry, material3);
-// plane1.position.x = 0;
-// plane1.position.y = 1.5;
-// plane1.position.z = 3;
-// plane1.name = "plane1";
+const plane6 = new THREE.Mesh(planeGeometry, material6);
+const plane7 = new THREE.Mesh(planeGeometry, material7);
+const plane8 = new THREE.Mesh(planeGeometry, material8);
+const plane9 = new THREE.Mesh(planeGeometry, material9);
+const plane10 = new THREE.Mesh(planeGeometry, material10);
+const plane11 = new THREE.Mesh(planeGeometry, material11);
+const plane12 = new THREE.Mesh(planeGeometry, material12);
+const plane13 = new THREE.Mesh(planeGeometry, material13);
+const plane14 = new THREE.Mesh(planeGeometry, material14);
+const plane15 = new THREE.Mesh(planeGeometry, material15);
+const plane16 = new THREE.Mesh(planeGeometry, material16);
+const plane17 = new THREE.Mesh(planeGeometry, material17);
+const plane18 = new THREE.Mesh(planeGeometry, material18);
+const plane19 = new THREE.Mesh(planeGeometry, material19);
+const plane20 = new THREE.Mesh(planeGeometry, material20);
 
 scene.add(plane1);
 
-// plane2.position.x = 2;
-// plane2.position.y = 1.5;
-// plane2.position.z = 3;
-// plane2.name = "plane2";
-
 scene.add(plane2);
-
-// plane3.position.x = -2;
-// plane3.position.y = 1.5;
-// plane3.position.z = 3;
-// plane3.name = "plane1";
 
 scene.add(plane3);
 
-// plane4.position.x = 0;
-// plane4.position.y = 0.5;
-// plane4.position.z = 3;
-// plane4.name = "plane4";
-
 scene.add(plane4);
 
-// plane5.position.x = 2;
-// plane5.position.y = 0.5;
-// plane5.position.z = 3;
 plane5.name = "plane5";
 
 scene.add(plane5);
 
-// plane6.position.x = -2;
-// plane6.position.y = 0.5;
-// plane6.position.z = 3;
 plane6.name = "plane6";
 
 scene.add(plane6);
-// scene.add(plane7);
-// scene.add(plane8);
+scene.add(plane7);
+scene.add(plane8);
+scene.add(plane9);
+scene.add(plane10);
+scene.add(plane11);
+scene.add(plane12);
+scene.add(plane13);
+scene.add(plane14);
+scene.add(plane15);
+scene.add(plane16);
+scene.add(plane17);
+scene.add(plane18);
+scene.add(plane19);
+scene.add(plane20);
 
-let planeArr = [[plane1, plane2, plane3, plane4, plane5], [plane6]];
+let planeArr = [
+  [plane1, plane2, plane3, plane4, plane5],
+  [plane6, plane7, plane8, plane9, plane10],
+  [plane11, plane12, plane13, plane14, plane15],
+  [plane16, plane17, plane18, plane19, plane20],
+];
 let pos = -2.4;
 let pos2 = -2.4;
+let pos3 = -2.4;
+let pos4 = -2.4;
 const planePos = () => {
   planeArr[0].forEach((plane) => {
     pos++;
     plane.position.y = 1;
     plane.position.z = 4;
     plane.position.x = pos -= 0.2;
+    console.log(planeArr[0][2]);
   });
   planeArr[1].forEach((plane) => {
     pos2++;
@@ -327,40 +414,42 @@ const planePos = () => {
     plane.position.z = 4;
     plane.position.x = pos2 -= 0.2;
   });
+  planeArr[2].forEach((plane) => {
+    pos3++;
+    plane.position.y = 0;
+    plane.position.z = 4;
+    plane.position.x = pos3 -= 0.2;
+  });
+  planeArr[3].forEach((plane) => {
+    pos4++;
+    plane.position.y = -0.5;
+    plane.position.z = 4;
+    plane.position.x = pos4 -= 0.2;
+  });
 };
 planePos();
 
-// let pos2 = 2.3;
-// const planePos2 = () => {
-//   planeArr[1].forEach((plane) => {
-//     pos2++;
-//     plane.position.y = 1;
-//     plane.position.z = 4;
-//     plane.position.x += pos2 -= 1.8;
-//   });
-// };
-// planePos2();
-
-// const planePos2 = () => {
-//   planeArr[1].forEach((plane) => {
-//     pos++;
-//     plane.position.y = 0;
-//     plane.position.z = 4;
-//     plane.position.x += pos -= 1.8;
-//   });
-// };
-// planePos2();
-console.log(planeArr);
-
-// const group1 = new THREE.Group();
-// group1.add(planeArr);
-
-// scene.add(group1);
-// Sizes
 const sizes = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
+
+// let cubeArray = [];
+// for (var k = 0; k < 10; k++) {
+//   for (var j = 0; j < 10; j++) {
+//     for (var i = 0; i < 10; i++) {
+//       var object = new THREE.Mesh(geometry, material);
+//       object.position.x = i;
+//       object.position.y = j;
+//       object.position.z = k;
+//       cubeArray .push("object");
+//       scene.add(object);
+//     }
+//   }
+// }
+
+console.log(sizes);
+console.log(planeArr[0][4].position);
 window.addEventListener("resize", () => {
   // Update sizes
   sizes.width = window.innerWidth;
@@ -435,7 +524,28 @@ window.addEventListener("mousemove", (event) => {
 
   raycaster.setFromCamera(mouse, camera);
 
-  const objectsToTest = [plane1, plane2, plane3, plane4, plane5];
+  const objectsToTest = [
+    plane1,
+    plane2,
+    plane3,
+    plane4,
+    plane5,
+    plane6,
+    plane7,
+    plane8,
+    plane9,
+    plane10,
+    plane11,
+    plane12,
+    plane13,
+    plane14,
+    plane15,
+    plane16,
+    plane17,
+    plane18,
+    plane19,
+    plane20,
+  ];
   const intersects = raycaster.intersectObjects(objectsToTest);
 
   // object1.name = "object1";
@@ -473,8 +583,8 @@ window.addEventListener("mousemove", (event) => {
         repeat: 0,
         // onComplete: onComplete,
         z: 1,
-        x: 2,
-        y: 2,
+        x: 1.5,
+        y: 1.5,
         ease: "expo.out",
       });
       console.log(intersects[0].object.scale);
@@ -766,18 +876,18 @@ window.addEventListener("click", () => {
 const clock = new THREE.Clock();
 
 // console.log(currentIntersect);
-let landscapeOn = () => {
-  gsap.to(landscape.position, {
-    duration: 1,
-    delay: 0,
-    repeat: 0,
-    z: 0,
-    x: 0,
-    y: 0,
-    yoyo: false,
-    ease: "slow(0.5, 0.8)",
-  });
-};
+// let landscapeOn = () => {
+//   gsap.to(landscape.position, {
+//     duration: 1,
+//     delay: 0,
+//     repeat: 0,
+//     z: 0,
+//     x: 0,
+//     y: 0,
+//     yoyo: false,
+//     ease: "slow(0.5, 0.8)",
+//   });
+// };
 
 const tick = () => {
   // landscapeOn();
@@ -811,6 +921,71 @@ const tick = () => {
     -(target.y - offSet.y) * 0.3
   );
 
+  material6.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
+  material7.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
+  material8.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
+  material9.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
+  material10.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material11.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material12.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material13.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material14.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material15.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material16.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material17.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material18.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material19.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+  material20.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+    -(target.y - offSet.y) * 0.3
+  );
+
   // Default camera setting
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
@@ -825,7 +1000,7 @@ const tick = () => {
   const ufoAngle = -elapsedTime * 0.18;
   ufo.position.y = Math.sin(elapsedTime);
   ufo.position.x = Math.cos(ufoAngle) * (7 + Math.sin(elapsedTime * 0.32));
-  ufo.position.z = Math.sin(ufoAngle) * (7 + Math.sin(elapsedTime * 0.5));
+  ufo.position.z = Math.sin(ufoAngle) * (8 + Math.sin(elapsedTime * 0.5));
   ufo.rotation.y = elapsedTime;
 
   // ufo.position.y = Math.sin(elapsedTime * 4) + Math.sin(elapsedTime * 2.5);
