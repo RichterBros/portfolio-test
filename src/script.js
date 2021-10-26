@@ -18,6 +18,8 @@ import { water2, wireframe2 } from "./water.js";
 
 // Debug
 // const gui = new dat.GUI();
+// const gui = new dat.GUI({ autoPlace: false });
+// gui.domElement.id = "gui";
 console.log(firefliesVertexShader);
 console.log(firefliesFragmentShader);
 
@@ -195,19 +197,17 @@ let texture15 = new THREE.TextureLoader().load(
   "/textures/safetyDemo_thumb.jpg"
 );
 let texture16 = new THREE.TextureLoader().load(
-  "/textures/safetyDemo_thumb.jpg"
+  "/textures/Oxfam_Americ_thumb.jpg"
 );
 let texture17 = new THREE.TextureLoader().load(
-  "/textures/safetyDemo_thumb.jpg"
+  "/textures/VerizonAnthem_thumb.jpg"
 );
 let texture18 = new THREE.TextureLoader().load(
-  "/textures/safetyDemo_thumb.jpg"
+  "/textures/track_town_thumb.jpg"
 );
-let texture19 = new THREE.TextureLoader().load(
-  "/textures/safetyDemo_thumb.jpg"
-);
+let texture19 = new THREE.TextureLoader().load("/textures/planters_thumb.jpg");
 let texture20 = new THREE.TextureLoader().load(
-  "/textures/safetyDemo_thumb.jpg"
+  "/textures/LAIKA_TRU2011_N2D1_Generic_web_thumb.jpg"
 );
 
 // immediately use the texture for material creation
@@ -489,6 +489,7 @@ scene.add(camera);
 scene.add(wireframe2);
 scene.add(water2);
 console.log(camera);
+// gui.add(camera.position, "y").min(-5).max(120);
 
 // Orbit controls
 // const controls = new OrbitControls(camera, canvas);
@@ -663,7 +664,10 @@ window.onclick = function (event) {
     contactButton.innerHTML = "contact";
 
     gsap.to(camera.position, {
-      keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+      y: 0,
+      z: 6,
+      duration: 1,
+      ease: "power3.inOut",
     });
     clicked = false;
   }
@@ -697,14 +701,20 @@ const contact = (event) => {
           // y: 5,
           // z: 2,
           // ease: "circ.out",
-          keyframes: [{ y: 3, z: -3, duration: 1, ease: "power3.inOut" }],
+          y: 3,
+          z: -3,
+          duration: 1,
+          ease: "power3.inOut",
         })
       : gsap.to(camera.position, {
           // duration: 3,
           // y: 5,
           // z: 2,
           // ease: "circ.out",
-          keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+          y: 0,
+          z: 6,
+          duration: 1,
+          ease: "power3.inOut",
         });
 
     // clicked ? modalsContact() : (images_modal.style.display = "none");
@@ -800,6 +810,39 @@ var newmp43 =
 var newmp44 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635202662/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
 
+var newmp45 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635282727/Fox_Sports_web_pcxuaz.mp4";
+var newmp46 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635283250/IbmWeb2_nyae84.mp4";
+var newmp47 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635284068/ParanormanCredits_web2_khcvtx.mp4";
+var newmp48 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635284901/Nissan_Holiday_Spirit_Everyone_web_skw91k.mp4";
+var newmp49 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285300/FA18_RN_React_Pillows_v007W2_p7zel9.mp4";
+var newmp410 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285558/KIA_web_bz95z7.mp4";
+var newmp411 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285791/Kroger_Digital_Engagement_hhp9zg.mp4";
+var newmp412 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285844/origin_genomics_web_bwwxoj.mp4";
+var newmp413 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285804/HouseSpecial_Kroger_Refresh_cc6bxq.mp4";
+var newmp414 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285997/BTeam_web2_djtyoc.mp4";
+var newmp415 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635286387/Toyota_safetyDemo_web_h1uwff.mp4";
+var newmp416 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635286742/Oxfam_GiftBetter_obv985.mp4";
+var newmp417 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635287547/VerizonAnthem_web2_fsion9.mp4";
+var newmp418 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635288168/track_town_web2_vyb4oo.mp4";
+var newmp419 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635288448/planters_afur4u.mp4";
+var newmp420 =
+  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635289373/LAIKA_TRU2011_N2D1_Generic_web_d5gffx.mp4";
+
 // document.getElementById("videolink1");
 window.addEventListener("click", () => {
   var title = document.getElementById("title");
@@ -860,10 +903,223 @@ window.addEventListener("click", () => {
         videocontainer.play();
 
         break;
+      case plane5:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "FOX SPORTS";
+
+        desc.innerHTML = "Lighting / particle effects";
+        videosource.setAttribute("src", newmp45);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane6:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "IBM THINK";
+
+        desc.innerHTML = "Animation / modeling / effects";
+        videosource.setAttribute("src", newmp46);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane7:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "PARANORMAN CREDITS";
+
+        desc.innerHTML = "Animation / comp of all elements";
+        videosource.setAttribute("src", newmp47);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane8:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "NISSAN HOLIDAY SPIRIT";
+
+        desc.innerHTML = "Coloring / comp of all elements";
+        videosource.setAttribute("src", newmp48);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane9:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "NIKE PILLOWS";
+
+        desc.innerHTML = "Animation / effects";
+        videosource.setAttribute("src", newmp49);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane10:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "KIA BLAZERS";
+
+        desc.innerHTML = "Animation / comp of all elements";
+        videosource.setAttribute("src", newmp410);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane11:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "KROGER";
+
+        desc.innerHTML = "Animation / effects / comp of all elements";
+        videosource.setAttribute("src", newmp411);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane12:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "ORIGIN GENOMICS";
+
+        desc.innerHTML = "Animation / effects / comp of all elements";
+        videosource.setAttribute("src", newmp412);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane13:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "KROGER";
+
+        desc.innerHTML = "Animation / effects / comp of all elements";
+        videosource.setAttribute("src", newmp413);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane14:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "B-TEAM";
+
+        desc.innerHTML = "Animation / effects / comp of all elements";
+        videosource.setAttribute("src", newmp414);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane15:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "TOYOTA";
+
+        desc.innerHTML = "Particle effects / comp";
+        videosource.setAttribute("src", newmp415);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane16:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "OXFAM AMERICA";
+
+        desc.innerHTML =
+          "Asset creation / comp / animation of secondary elements";
+        videosource.setAttribute("src", newmp416);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane17:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "VERIZON ANTHEM";
+
+        desc.innerHTML = "Animation / asset creation / comp of all elements";
+        videosource.setAttribute("src", newmp417);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane18:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "NIKE TRACKTOWN VISUALIZATION";
+
+        desc.innerHTML = "Animation / asset creation / comp of all elements";
+        videosource.setAttribute("src", newmp418);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane19:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "PLANTERS";
+
+        desc.innerHTML = "Animation / comp of all cg elements";
+        videosource.setAttribute("src", newmp419);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
+      case plane20:
+        console.log("clicked on object3");
+        modals();
+
+        title.innerHTML = "TOYS R US";
+
+        desc.innerHTML = "Animation / comp of all cg elements";
+        videosource.setAttribute("src", newmp420);
+        videocontainer.load();
+        console.log(videosource);
+        videocontainer.play();
+
+        break;
     }
   }
 });
 
+const test = () => {
+  console.log(camera.position.y);
+};
+test();
 // const mouseOverTest = () => {
 //   window.addEventListener("mouseover", () => {
 //     console.log("mouse enter");
@@ -888,6 +1144,14 @@ const clock = new THREE.Clock();
 //     ease: "slow(0.5, 0.8)",
 //   });
 // };
+let y = 0;
+let position = 0;
+function onMouseWheel(event) {
+  event.preventDefault();
+  y = event.deltaY * 0.0007;
+  console.log(event.deltaY);
+}
+window.addEventListener("wheel", onMouseWheel);
 
 const tick = () => {
   // landscapeOn();
@@ -990,7 +1254,15 @@ const tick = () => {
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
   renderer.render(scene, camera);
+  // camera.position.y = y * 0.002;
+  // function onMouseWheel(ev) {
+  //   event.preventDefault();
 
+  //   camera.position.y += event.deltaY / 1000;
+
+  //   // prevent scrolling beyond a min/max value
+  //   camera.position.clampScalar(0, 10);
+  // }
   //Clock
   // console.log(camera.rotation.y);
   const elapsedTime = clock.getElapsedTime();
