@@ -133,7 +133,7 @@ const firefliesMaterial = new THREE.ShaderMaterial({
 //   .add(firefliesMaterial.uniforms.uSize, "value")
 //   .min(1)
 //   .max(500)
-//   .step(1)
+//   .step(1)about / contact
 //   .name("firefliesSize");
 
 //Firefly Points
@@ -661,7 +661,7 @@ window.onclick = function (event) {
   }
   if (event.target == images_modalContact) {
     images_modalContact.style.display = "none";
-    contactButton.innerHTML = "contact";
+    contactButton.innerHTML = "about / contact";
 
     gsap.to(camera.position, {
       y: 0,
@@ -693,7 +693,7 @@ const contact = (event) => {
     clicked2 = false;
     clicked
       ? (contactButton.innerHTML = "back")
-      : (contactButton.innerHTML = "contact");
+      : (contactButton.innerHTML = "about / contact");
     console.log(clicked);
     clicked
       ? gsap.to(camera.position, {
