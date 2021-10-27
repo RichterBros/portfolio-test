@@ -1116,10 +1116,6 @@ window.addEventListener("click", () => {
   }
 });
 
-const test = () => {
-  console.log(camera.position.y);
-};
-test();
 // const mouseOverTest = () => {
 //   window.addEventListener("mouseover", () => {
 //     console.log("mouse enter");
@@ -1146,18 +1142,27 @@ const clock = new THREE.Clock();
 // };
 let y = 0;
 let position = 0;
-function onMouseWheel(event) {
-  event.preventDefault();
-  y = event.deltaY * 0.0007;
-  console.log(event.deltaY);
-}
+
 window.addEventListener("wheel", onMouseWheel);
+
+let yScroll = 0;
+let scrollPosition = 0;
+
+function onMouseWheel(event) {
+  yScroll = event.deltaY * 0.0007;
+}
 
 const tick = () => {
   // landscapeOn();
   //renderer.render(scene, camera);
   // target.x = (1 - mouse.x) * 0.2;
   // target.y = (1 - mouse.y) * 0.2;
+
+  // Scroll
+
+  // scrollPosition += yScroll;
+  // yScroll *= 0.9;
+  // camera.position.y = scrollPosition;
 
   target.x = mouse.x * 0.08;
   target.y = mouse.y * 0.08;
