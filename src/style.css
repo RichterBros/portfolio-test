@@ -189,3 +189,14 @@ video {
   height: 5000px;
   position: absolute;
 }
+
+img.erich {
+  float: left;
+  padding-right: 10px;
+  padding-top: 5px;
+  width: 85px;
+}
+
+p.erich {
+  text-align: left;
+}
