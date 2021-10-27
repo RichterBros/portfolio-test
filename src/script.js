@@ -782,7 +782,7 @@ let modalsContact = () => {
 
   spanContact.onclick = function () {
     modal.style.display = "none";
-    contactButton.innerHTML = "contact";
+    contactButton.innerHTML = "about / contact";
     gsap.to(camera.position, {
       keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
     });
