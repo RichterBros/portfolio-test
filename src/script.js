@@ -337,7 +337,7 @@ let material20 = material1.clone();
 material20.uniforms.uTexture.value = texture20;
 
 const plane1 = new THREE.Mesh(planeGeometry, material1);
-
+plane1.name = "plane1";
 const plane2 = new THREE.Mesh(planeGeometry, material2);
 const plane3 = new THREE.Mesh(planeGeometry, material3);
 
@@ -505,20 +505,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 console.log(landscape.position.y);
 
-// let plane1On = () => {
-//   gsap.to(plane1.position, {
-//     duration: 1,
-//     delay: 0.0,
-//     repeat: 0,
-
-//     z: 1.5,
-//     x: 0,
-//     y: 0,
-//     yoyo: false,
-//     ease: "slow(0.5, 0.8)",
-//   });
-// };
-
+console.log(sideText.innerHTML);
 window.addEventListener("mousemove", (event) => {
   mouse.x = (event.clientX / sizes.width) * 2 - 1;
   mouse.y = -(event.clientY / sizes.height) * 2 + 1;
@@ -549,35 +536,20 @@ window.addEventListener("mousemove", (event) => {
   ];
   const intersects = raycaster.intersectObjects(objectsToTest);
 
+  console.log(sideText);
   // object1.name = "object1";
   if (intersects.length) {
     if (!currentIntersect) {
       console.log("mouse enter");
-      console.log(intersects);
+      console.log(intersects[0].object.name);
+      let sideText = document.getElementById("sideText");
+      console.log(sideText);
+      intersects[0].object == plane1
+        ? (sideText.innerHTML = "Facebook")
+        : (sideText.innerHTML = "");
 
-      // gsap.to(intersects[0].object.position, {
-      //   duration: 1,
-      //   delay: 0,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-      //   z: 4,
-      //   x: 0,
-      //   y: 0,
-      //   ease: "expo.out",
-      // });
-
-      // gsap.to(intersects[0].object.position, {
-      //   duration: 1,
-      //   delay: 0,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-
-      //   z: 0,
-      //   x: 0,
-      //   y: 0,
-      //   ease: "expo.out",
-      // });
-
+      // plane1.object.name == "plane1" ? (sideText.innerHTML = "Facebook") : null;
+      // console.log(sideText);
       gsap.to(intersects[0].object.scale, {
         duration: 1,
         delay: 0,
@@ -586,6 +558,17 @@ window.addEventListener("mousemove", (event) => {
         z: 1,
         x: 1.5,
         y: 1.5,
+        ease: "expo.out",
+      });
+      gsap.to(sideText, {
+        duration: 1,
+        delay: 0,
+        repeat: 0,
+        // onComplete: onComplete,
+        z: 0,
+        x: window.innerWidth * 0.17,
+        y: 0,
+        opacity: 1,
         ease: "expo.out",
       });
       console.log(intersects[0].object.scale);
@@ -602,25 +585,25 @@ window.addEventListener("mousemove", (event) => {
         delay: 0,
         repeat: 0,
         // onComplete: onComplete,
-
         z: 1,
         x: 1,
         y: 1,
+
         ease: "expo.out",
       });
-      // gsap.to(currentIntersect.object.position, {
-      //   duration: 1,
-      //   delay: 0,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-
-      //   z: 0,
-      //   x: 0,
-      //   y: 0,
-      //   ease: "expo.out",
-      // });
+      gsap.to(sideText, {
+        duration: 1,
+        delay: 0,
+        repeat: 0,
+        // onComplete: onComplete,
+        z: 0,
+        x: 0,
+        y: 0,
+        opacity: 0,
+        ease: "expo.out",
+      });
     }
-
+    sideText.innerHTML = "";
     currentIntersect = null;
   }
 });

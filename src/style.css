@@ -200,3 +200,16 @@ img.erich {
 p.erich {
   text-align: left;
 }
+
+.sideText {
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0);
+  color: white;
+  position: absolute;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  font-family: "Space Mono", monospace;
+}
