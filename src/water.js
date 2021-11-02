@@ -75,6 +75,7 @@ const waterMaterial = new THREE.ShaderMaterial({
   },
   wireframe: false,
   fog: true,
+  side: THREE.DoubleSide,
 });
 console.log(waterMaterial);
 const waterMaterial2 = new THREE.ShaderMaterial({
@@ -106,10 +107,14 @@ const waterMaterial2 = new THREE.ShaderMaterial({
   },
   wireframe: false,
   fog: true,
+  side: THREE.DoubleSide,
 });
 
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+const material = new THREE.MeshStandardMaterial({
+  color: 0x00ff00,
+  side: THREE.DoubleSide,
+});
 // const cube = new THREE.Mesh(geometry, material);
 // scene.add(cube);
 

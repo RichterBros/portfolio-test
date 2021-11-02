@@ -215,7 +215,7 @@ let texture20 = new THREE.TextureLoader().load(
 
 const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
-
+const offSet2 = new Vector2(0, 0); // Mesh position
 const planeGeometry = new THREE.PlaneGeometry(0.5, 0.25, 10, 10);
 // console.log(geometry.parameters.width);
 
@@ -536,7 +536,7 @@ window.addEventListener("mousemove", (event) => {
   ];
   const intersects = raycaster.intersectObjects(objectsToTest);
 
-  console.log(sideText);
+  // console.log(sideText);
   // object1.name = "object1";
   if (intersects.length) {
     if (!currentIntersect) {
@@ -1127,36 +1127,73 @@ let y = 0;
 let position = 0;
 
 window.addEventListener("wheel", onMouseWheel);
-
-let yScroll = 0;
+// let div1 = document.getElementById("div1");
+// let yScroll = 0;
+// let yScroll2 = 0;
 let scrollPosition = 0;
+let scrollTarget = 0;
+// let scrollPosition2 = 0;
+let current = 0;
+let target3 = 0;
+let ease = 0.075;
+// let div1 = document.querySelector(".div1");
 
 function onMouseWheel(event) {
-  yScroll = event.deltaY * 0.0007;
+  scrollTarget = event.deltaY * 0.0007;
+  // yScroll2 = event.deltaY * 0.0007;
 }
 
+let scrollEvent = () => {
+  document.addEventListener("mousewheel", (e) => {
+    scrollTarget = camera.position.y;
+  });
+};
+scrollEvent();
+window.addEventListener("scroll", scrollEvent());
+
+function lerp(start, end, t) {
+  return start * (1 - t) + end * t;
+}
 const tick = () => {
+  // let current = scrollPosition;
+  // let target2 = scrollTarget;
+  let ease = 0.95;
+  let ease2 = 0.0025;
+  scrollPosition += lerp(scrollPosition, scrollTarget, ease) * 0.35;
+  scrollPosition *= 0.655;
+  scrollTarget *= 0.95;
+  // let scr = scrollTarget;
+  // console.log(scrollTarget);
   // landscapeOn();
   //renderer.render(scene, camera);
   // target.x = (1 - mouse.x) * 0.2;
   // target.y = (1 - mouse.y) * 0.2;
-
+  const elapsedTime = clock.getElapsedTime();
   // Scroll
 
   // scrollPosition += yScroll;
+  // scrollPosition2 += yScroll2;
   // yScroll *= 0.9;
-  // camera.position.y = scrollPosition;
+  // yScroll2 *= 0.9;
+  camera.position.y -= scrollPosition;
 
+  console.log(camera.position.y);
   target.x = mouse.x * 0.08;
   target.y = mouse.y * 0.08;
 
   material1.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    // -(target.y - offSet.y) * 0.3,
+    // offSet.x * 0.0,
+    // offSet.x * 0.0,
+    // lerp(scrollPosition, scrollTarget, ease) * 0.009
+    // (scr *= Math.cos(1) * 0.03),
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
+  // console.log(target2);
   material2.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material3.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
@@ -1253,7 +1290,7 @@ const tick = () => {
   // }
   //Clock
   // console.log(camera.rotation.y);
-  const elapsedTime = clock.getElapsedTime();
+
   // ufo.position.x = Math.sin(elapsedTime / 3);
   // ufo.position.z = Math.sin(elapsedTime / 15);
 
