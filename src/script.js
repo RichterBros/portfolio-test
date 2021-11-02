@@ -216,7 +216,7 @@ let texture20 = new THREE.TextureLoader().load(
 const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
 const offSet2 = new Vector2(0, 0); // Mesh position
-const planeGeometry = new THREE.PlaneGeometry(0.5, 0.25, 10, 10);
+const planeGeometry = new THREE.PlaneGeometry(1, 0.5, 5, 5);
 // console.log(geometry.parameters.width);
 
 // let textureArr = [texture, texture2];
@@ -400,29 +400,35 @@ let pos = -2.4;
 let pos2 = -2.4;
 let pos3 = -2.4;
 let pos4 = -2.4;
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+};
+
 const planePos = () => {
   planeArr[0].forEach((plane) => {
     pos++;
-    plane.position.y = 1;
+    plane.position.y = pos;
     plane.position.z = 4;
-    plane.position.x = pos -= 0.2;
+    plane.position.x += getRandomInt(-1.0, 2.0);
     console.log(planeArr[0][2]);
   });
   planeArr[1].forEach((plane) => {
     pos2++;
-    plane.position.y = 0.5;
+    plane.position.y = -1;
     plane.position.z = 4;
     plane.position.x = pos2 -= 0.2;
   });
   planeArr[2].forEach((plane) => {
     pos3++;
-    plane.position.y = 0;
+    plane.position.y = -2;
     plane.position.z = 4;
     plane.position.x = pos3 -= 0.2;
   });
   planeArr[3].forEach((plane) => {
     pos4++;
-    plane.position.y = -0.5;
+    plane.position.y = -3;
     plane.position.z = 4;
     plane.position.x = pos4 -= 0.2;
   });
@@ -1158,7 +1164,7 @@ const tick = () => {
   // let current = scrollPosition;
   // let target2 = scrollTarget;
   let ease = 0.95;
-  let ease2 = 0.0025;
+  let ease2 = 0.00025;
   scrollPosition += lerp(scrollPosition, scrollTarget, ease) * 0.35;
   scrollPosition *= 0.655;
   scrollTarget *= 0.95;
