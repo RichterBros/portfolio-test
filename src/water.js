@@ -38,7 +38,7 @@ const testElevation = { height: 0 };
  * Water
  */
 // Geometry
-const waterGeometry = new THREE.PlaneGeometry(25, 10, 20, 20);
+const waterGeometry = new THREE.PlaneGeometry(25, 40, 20, 40);
 
 // Color
 debugObject.depthColor = "#186691";
@@ -52,7 +52,7 @@ const waterMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
 
-    uBigWavesElevation: { value: 0.12 },
+    uBigWavesElevation: { value: 0.25 },
     uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
     uBigWavesSpeed: { value: 0.75 },
 
@@ -84,7 +84,7 @@ const waterMaterial2 = new THREE.ShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
 
-    uBigWavesElevation: { value: 0.12 },
+    uBigWavesElevation: { value: 0.25 },
 
     uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
     uBigWavesSpeed: { value: 0.75 },
@@ -135,7 +135,7 @@ scene.add(mesh);
 // mesh.add(wireframe);
 
 const water = new THREE.Mesh(waterGeometry, waterMaterial);
-water.rotation.x = -Math.PI * 0.5;
+water.rotation.x = -Math.PI * 0.2;
 water.position.y = -1;
 
 scene.add(water);
@@ -150,7 +150,7 @@ var material2 = new THREE.LineBasicMaterial({
 var wireframe = new THREE.LineSegments(geometry2, waterMaterial2);
 // wireframe.material.uniforms.uSurfaceColor.value = { r: 1, g: 1, b: 1 };
 console.log(wireframe.material.uniforms.uSurfaceColor.value);
-wireframe.rotation.x = -Math.PI * 0.5;
+wireframe.rotation.x = -Math.PI * 0.2;
 wireframe.position.y = -1;
 export default wireframe;
 mesh.add(wireframe);

@@ -43,21 +43,21 @@ const scene = new THREE.Scene();
 
 const gltfLoader = new GLTFLoader();
 
-let landscape = new THREE.Object3D();
+let landscape3 = new THREE.Object3D();
 let ufo = new THREE.Object3D();
 
 let mixer = null;
 
-gltfLoader.load("/models/landscape.gltf", (gltf) => {
+gltfLoader.load("/models/landscape3.gltf", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
   gltf.scene.position.set(0, -0.2, 1);
-
+  gltf.scene.rotation.set(0.3, 0.3, 0);
   scene.add(gltf.scene);
   // model.name = 'model';
-  landscape = gltf.scene;
+  landscape3 = gltf.scene;
 
   // Add gltf model to scene
-  scene.add(landscape);
+  scene.add(landscape3);
 });
 
 gltfLoader.load("/models/ufo3.glb", (gltf) => {
@@ -82,7 +82,7 @@ console.log(ufo);
 //     ease: "slow(0.5, 0.8)",
 //   });
 // });
-var landObject = scene.getObjectByName("landscape");
+var landObject = scene.getObjectByName("landscape3");
 
 // Fireflies
 // Geometry
@@ -409,31 +409,34 @@ const getRandomInt = (min, max) => {
 const planePos = () => {
   planeArr[0].forEach((plane) => {
     pos++;
-    plane.position.y = pos;
+    plane.position.y = pos - 2;
     plane.position.z = 4;
     plane.position.x += getRandomInt(-1.0, 2.0);
     console.log(planeArr[0][2]);
   });
   planeArr[1].forEach((plane) => {
     pos2++;
-    plane.position.y = -1;
+    plane.position.y = pos2 - 4;
     plane.position.z = 4;
-    plane.position.x = pos2 -= 0.2;
+    plane.position.x += getRandomInt(-1.0, 2.0);
   });
   planeArr[2].forEach((plane) => {
     pos3++;
-    plane.position.y = -2;
+    plane.position.y = pos3 - 6;
     plane.position.z = 4;
-    plane.position.x = pos3 -= 0.2;
+    plane.position.x += getRandomInt(-1.0, 2.0);
   });
   planeArr[3].forEach((plane) => {
     pos4++;
-    plane.position.y = -3;
+    plane.position.y = pos4 - 8;
     plane.position.z = 4;
-    plane.position.x = pos4 -= 0.2;
+    plane.position.x += getRandomInt(-1.0, 2.0);
   });
 };
-planePos();
+
+plane1.position.set(0, 0, 4);
+plane2.position.set(1, -1, 4);
+plane3.position.set(0, -2, 4);
 
 const sizes = {
   width: window.innerWidth,
@@ -491,6 +494,7 @@ const camera = new THREE.PerspectiveCamera(
   500
 );
 camera.position.z = 6;
+camera.position.y = 1;
 scene.add(camera);
 scene.add(wireframe2);
 scene.add(water2);
@@ -509,7 +513,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-console.log(landscape.position.y);
+// console.log(landscape2.position.y);
 
 console.log(sideText.innerHTML);
 window.addEventListener("mousemove", (event) => {
@@ -1183,7 +1187,7 @@ const tick = () => {
   // yScroll2 *= 0.9;
   camera.position.y -= scrollPosition;
 
-  console.log(camera.position.y);
+  // console.log(camera.position.y);
   target.x = mouse.x * 0.08;
   target.y = mouse.y * 0.08;
 
@@ -1203,7 +1207,7 @@ const tick = () => {
   );
   material3.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material4.uniforms.uOffset.value.set(
