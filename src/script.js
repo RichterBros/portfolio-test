@@ -15,10 +15,11 @@ import { Vector2 } from "three";
 import { Vector3 } from "three";
 import { Color } from "three";
 import { water2, wireframe2 } from "./water.js";
+import testVertexShader from "./shaders/test/vertex.glsl";
+import testFragmentShader from "./shaders/test/fragment.glsl";
 
 // Debug
-// const gui = new dat.GUI();
-// const gui = new dat.GUI({ autoPlace: false });
+
 // gui.domElement.id = "gui";
 console.log(firefliesVertexShader);
 console.log(firefliesFragmentShader);
@@ -241,12 +242,76 @@ const planeGeometry = new THREE.PlaneGeometry(1, 0.5, 5, 5);
 //   }
 // }
 
+//Debug test
+var text = {
+  message: "dat.gui",
+  speed: 0.8,
+  progress: 0,
+  displayOutline: false,
+};
+
+var gui = new dat.GUI({ autoPlace: false });
+var menu = gui.addFolder("folder");
+menu.add(text, "message");
+menu.add(text, "speed", -5, 5);
+menu.add(text, "displayOutline");
+menu.add(text, "progress", 0, 1, 0.001);
+
+var customContainer = document.getElementById("my-gui-container");
+customContainer.appendChild(gui.domElement);
+console.log(text.progress);
+const materialTest = new THREE.ShaderMaterial({
+  uniforms: {
+    time: { value: 1.0 },
+    uTexture: { value: texture19 },
+    uTextureSize: { value: new THREE.Vector2(100, 100) },
+    uCorners: { value: new THREE.Vector2(0, 0) },
+    uResolution: { value: new THREE.Vector2(1200, 1200) },
+    uProgress: { value: 1.0 },
+    resolution: { value: new THREE.Vector2() },
+    uQuadSize: { value: new THREE.Vector2(300, 300) },
+  },
+  vertexShader: testVertexShader,
+  fragmentShader: testFragmentShader,
+  side: THREE.DoubleSide,
+  wireframe: false,
+
+  // opacity: 0.5,
+  // transparent: true,
+});
+
+// gsap to animate corners
+
+let tl = gsap
+  .timeline()
+  .to(materialTest.uniforms.uCorners.value, {
+    x: 1,
+  })
+  .to(materialTest.uniforms.uCorners.value, {
+    y: 1,
+
+    ease: "expo.out",
+  });
+
+const planeTest = new THREE.Mesh(planeGeometry, materialTest);
+// new THREE.MeshBasicMaterial({ color: "#ff0000" })
+scene.add(planeTest);
+
+// planeTest.postition.set(0, 0, 4);
+
+planeTest.position.z = 4;
+planeTest.position.y = 1;
+planeTest.position.x = 1;
+planeTest.rotation.z = 0.5;
+
 const material1 = new THREE.ShaderMaterial({
   uniforms: {
     // uTime: { value: 0 },
     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
     // uSize: { value: 50 },
     uTexture: { value: texture },
+    uCorners: { value: new THREE.Vector2(0, 0) },
+
     // uScale: { value: new THREE.Vector2(0.0, 0.0) },
     // uAlpha: { value: 0.0 },
     uOffset: { value: new THREE.Vector2(0.0, 0.0) },
@@ -263,7 +328,14 @@ const material1 = new THREE.ShaderMaterial({
   // opacity: 0.5,
   // transparent: true,
 });
-
+// let tl = gsap
+//   .timeline()
+//   .to(material1.uniforms.uCorners.value, {
+//     x: 1,
+//   })
+//   .to(material1.uniforms.uCorners.value, {
+//     y: 1,
+//   });
 // const material2 = new THREE.ShaderMaterial({
 //   uniforms: {
 //     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
@@ -581,6 +653,14 @@ window.addEventListener("mousemove", (event) => {
         opacity: 1,
         ease: "expo.out",
       });
+      let tl = gsap
+        .timeline()
+        .to(material1.uniforms.uCorners.value, {
+          x: 1,
+        })
+        .to(material1.uniforms.uCorners.value, {
+          y: 1,
+        });
       console.log(intersects[0].object.scale);
     }
     currentIntersect = intersects[0];
@@ -1164,9 +1244,15 @@ window.addEventListener("scroll", scrollEvent());
 function lerp(start, end, t) {
   return start * (1 - t) + end * t;
 }
+console.log(materialTest);
+let time = 0;
 const tick = () => {
-  // let current = scrollPosition;
-  // let target2 = scrollTarget;
+  time += 0.05;
+  materialTest.uniforms.time.value = time;
+  // materialTest.uniforms.uProgress.value = text.progress;
+
+  tl.progress(text.progress);
+
   let ease = 0.95;
   let ease2 = 0.00025;
   scrollPosition += lerp(scrollPosition, scrollTarget, ease) * 0.35;

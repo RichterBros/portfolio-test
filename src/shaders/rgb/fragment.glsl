@@ -1,5 +1,6 @@
 uniform sampler2D uTexture;
 uniform float uAlpha;
+uniform float uProgress;
 uniform vec2 uOffset;
 uniform vec2 u_mouse;
 varying vec2 vUv;
@@ -98,13 +99,16 @@ vec3 rgbShift(sampler2D textureimage, vec2 uv, vec2 offset){
 
 
 void main() {
+// gl_FragColor( uProgress,0.,0.,1.)
 
+
+  
   vec3 color = rgbShift(uTexture, vUv, uOffset);
 gl_FragColor = vec4(color, uAlpha);
-//    gl_FragColor = cnoise(vec3(vUv, uOffset)) - 0.5 ;
   vec4 textureColor = texture2D(uTexture, vUv );
+
+}
+//    gl_FragColor = cnoise(vec3(vUv, uOffset)) - 0.5 ;
   // gl_FragColor = textureColor;
 // vec3 texture = texture2D(uTexture, vUv ).rgb;
 // gl_FragColor = vec4(texture,1.0);
-
-}

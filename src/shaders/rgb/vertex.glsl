@@ -1,5 +1,6 @@
 uniform sampler2D uTexture;
 uniform vec2 uOffset;
+uniform vec2 uCorners;
 uniform vec2 uScale;
 uniform vec2 uMouseTest;
 varying vec2 vUv;
@@ -32,8 +33,12 @@ void main(){
                        vec4(0.0,0.0,scaleZ,0.0),
                        vec4(0.0,0.0,0.0,1.0));
   
-  
-  
+  // zoom lag corners effect
+  vec4 defaultState = modelMatrix*vec4( position, 1.0 );
+  vec4 fullScreenState = vec4( position, 1.0 );
+  float cornersProgress = mix(uCorners.x,uCorners.y,uv.x);
+  vec4 finalState = mix(defaultState,fullScreenState, cornersProgress);
+
   gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0) * sPos;
 
 // newPosition.y += sin(uTime + modelPosition.y * 100.0) * 0.2;

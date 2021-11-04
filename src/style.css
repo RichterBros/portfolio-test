@@ -129,6 +129,7 @@ body {
   width: 100%;
   height: 50px;
   background-color: rgb(187, 187, 187);
+
   position: absolute;
   top: 0;
   display: flex;
@@ -154,6 +155,7 @@ body {
   margin-top: 0px;
   cursor: pointer;
   background-color: rgb(4, 110, 114);
+
   color: white;
   padding: 10px;
   border: none;
@@ -212,4 +214,26 @@ p.erich {
   align-items: center;
   z-index: 1;
   font-family: "Space Mono", monospace;
+}
+/* //gui */
+#iframe-goes-in-here {
+  position: fixed;
+  width: 50%;
+  height: 200px;
+  background-color: #ff0000;
+  left: 50px;
+  top: 50px;
+  z-index: 10;
+}
+#iframe-goes-in-here iframe {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+#my-gui-container {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  z-index: 10;
 }
