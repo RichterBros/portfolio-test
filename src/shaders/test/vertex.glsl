@@ -12,10 +12,14 @@ vUv = uv;
   vec4 defaultState = modelMatrix * vec4(
     position, 1.0);
   
-  vec4 fullScreenState = vec4(position, 1.0);
+  vec4 fullScreenState = vec4(position,1.0);
   fullScreenState.x *= uResolution.x/uQuadSize.x;
   fullScreenState.y *= uResolution.y/uQuadSize.y;
-  float cornersProgress = mix(uCorners.x,uCorners.y,uv.x);
+  float cornersProgress = mix(
+    mix(uCorners.x,uCorners.y,uv.x),
+    mix(uCorners.z,uCorners.w,uv.x),
+    uv.y
+  );
 
   
   vec4 finalState = mix(defaultState, fullScreenState, cornersProgress );

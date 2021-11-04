@@ -260,14 +260,15 @@ menu.add(text, "progress", 0, 1, 0.001);
 var customContainer = document.getElementById("my-gui-container");
 customContainer.appendChild(gui.domElement);
 console.log(text.progress);
+
 const materialTest = new THREE.ShaderMaterial({
   uniforms: {
     time: { value: 1.0 },
     uTexture: { value: texture19 },
     uTextureSize: { value: new THREE.Vector2(100, 100) },
-    uCorners: { value: new THREE.Vector2(0, 0) },
+    uCorners: { value: new THREE.Vector4(1, 1, 1, 1) },
     uResolution: { value: new THREE.Vector2(1200, 1200) },
-    uProgress: { value: 1.0 },
+    uProgress: { value: 0.0 },
     resolution: { value: new THREE.Vector2() },
     uQuadSize: { value: new THREE.Vector2(300, 300) },
   },
@@ -282,27 +283,50 @@ const materialTest = new THREE.ShaderMaterial({
 
 // gsap to animate corners
 
-let tl = gsap
-  .timeline()
-  .to(materialTest.uniforms.uCorners.value, {
-    x: 1,
-  })
-  .to(materialTest.uniforms.uCorners.value, {
-    y: 1,
-
-    ease: "expo.out",
-  });
-
+// gsap
+//   .timeline()
+//   .to(materialTest.uniforms.uCorners.value, {
+//     x: 1,
+// ease: "expo.in",
+// duration: 5,
+// })
+// .to(
+//   materialTest.uniforms.uCorners.value,
+//   {
+//     y: 1,
+// ease: "expo.in",
+// duration: 0.1,
+//   }
+//   // 0.1
+// )
+// .to(
+//   materialTest.uniforms.uCorners.value,
+//   {
+//     z: 1,
+// ease: "expo.in",
+// duration: 0.1,
+//   }
+//   // 0.2
+// )
+// .to(
+//   materialTest.uniforms.uCorners.value,
+//   {
+//     w: 1,
+//     // ease: "expo.in",
+//     // duration: 0.1,
+//   }
+//   // 0.3
+// );
 const planeTest = new THREE.Mesh(planeGeometry, materialTest);
 // new THREE.MeshBasicMaterial({ color: "#ff0000" })
 scene.add(planeTest);
 
 // planeTest.postition.set(0, 0, 4);
 
-planeTest.position.z = 4;
-planeTest.position.y = 1;
-planeTest.position.x = 1;
-planeTest.rotation.z = 0.5;
+planeTest.position.z = 0;
+planeTest.position.y = 0;
+planeTest.position.x = 0;
+planeTest.rotation.z = 0.0;
 
 const material1 = new THREE.ShaderMaterial({
   uniforms: {
@@ -653,14 +677,42 @@ window.addEventListener("mousemove", (event) => {
         opacity: 1,
         ease: "expo.out",
       });
-      let tl = gsap
+
+      // corners distorion effect
+      gsap
         .timeline()
-        .to(material1.uniforms.uCorners.value, {
-          x: 1,
+        .to(materialTest.uniforms.uCorners.value, {
+          x: 2,
+          // ease: "expo.inOut",
+          duration: 0.5,
         })
-        .to(material1.uniforms.uCorners.value, {
-          y: 1,
-        });
+        .to(
+          materialTest.uniforms.uCorners.value,
+          {
+            y: 2,
+            // ease: "expo.inOut",
+            duration: 0.5,
+          },
+          1.0
+        )
+        .to(
+          materialTest.uniforms.uCorners.value,
+          {
+            z: 2,
+            // ease: "expo.inOut",
+            duration: 0.5,
+          },
+          2.0
+        )
+        .to(
+          materialTest.uniforms.uCorners.value,
+          {
+            w: 2,
+            // ease: "expo.inOut",
+            duration: 0.5,
+          },
+          3.0
+        );
       console.log(intersects[0].object.scale);
     }
     currentIntersect = intersects[0];
@@ -1245,13 +1297,14 @@ function lerp(start, end, t) {
   return start * (1 - t) + end * t;
 }
 console.log(materialTest);
-let time = 0;
+// let time = 0;
 const tick = () => {
-  time += 0.05;
-  materialTest.uniforms.time.value = time;
+  // console.log(materialTest.uniforms.uResolution);
+  // time += 0.05;
+  // materialTest.uniforms.time.value = time;
   // materialTest.uniforms.uProgress.value = text.progress;
 
-  tl.progress(text.progress);
+  // tl.progress(text.progress);
 
   let ease = 0.95;
   let ease2 = 0.00025;
