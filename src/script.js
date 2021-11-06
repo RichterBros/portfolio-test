@@ -17,6 +17,8 @@ import { Color } from "three";
 import { water2, wireframe2 } from "./water.js";
 import testVertexShader from "./shaders/test/vertex.glsl";
 import testFragmentShader from "./shaders/test/fragment.glsl";
+import ScrollMagic from "scrollmagic";
+//import "ScrollMagic/scrollmagic/minified/plugins/debug.addIndicators.min.js";
 
 // Debug
 
@@ -46,12 +48,13 @@ const gltfLoader = new GLTFLoader();
 
 let landscape3 = new THREE.Object3D();
 let ufo = new THREE.Object3D();
+let ufo2 = new THREE.Object3D();
 
 let mixer = null;
 
 gltfLoader.load("/models/landscape3.gltf", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, -0.2, 1);
+  gltf.scene.position.set(0, -0.2, 0.9);
   gltf.scene.rotation.set(0.3, 0.3, 0);
   scene.add(gltf.scene);
   // model.name = 'model';
@@ -70,7 +73,46 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
   // Add gltf model to scene
   scene.add(ufo);
 });
-console.log(ufo);
+
+gltfLoader.load("/models/ufo3.glb", (gltf) => {
+  gltf.scene.scale.set(0.025, 0.025, 0.025);
+  gltf.scene.position.set(0, -7, 3);
+
+  ufo2 = gltf.scene;
+
+  // Add gltf model to scene
+  scene.add(ufo2);
+});
+
+// Ufo animation
+
+// const flightPath = {
+//   curviness: 1.25,
+//   autoRotate: true,
+//   values: [
+//     { x: 100, y: -20 },
+//     { x: 300, y: 10 },
+//   ],
+// };
+
+// const tween = new gsap.timeline();
+
+// gsap.to(ufo2.position, {
+//   // bezier: flightPath,
+//   ease: "Power1.easeInOut",
+//   duration: 1,
+//   x: -10,
+// });
+
+// const controller = new ScrollMagic.Controller();
+
+// const newScene = new ScrollMagic.Scene({
+//   triggerElement: ".scroller",
+//   duration: "3000",
+// })
+//   .addIndicators()
+//   .addTo(controller);
+console.log(ufo2.position);
 // window.addEventListener("load", () => {
 //   gsap.to(landscape.position, {
 //     duration: 2,
@@ -243,43 +285,43 @@ const planeGeometry = new THREE.PlaneGeometry(1, 0.5, 5, 5);
 // }
 
 //Debug test
-var text = {
-  message: "dat.gui",
-  speed: 0.8,
-  progress: 0,
-  displayOutline: false,
-};
+// var text = {
+//   message: "dat.gui",
+//   speed: 0.8,
+//   progress: 0,
+//   displayOutline: false,
+// };
 
-var gui = new dat.GUI({ autoPlace: false });
-var menu = gui.addFolder("folder");
-menu.add(text, "message");
-menu.add(text, "speed", -5, 5);
-menu.add(text, "displayOutline");
-menu.add(text, "progress", 0, 1, 0.001);
+// var gui = new dat.GUI({ autoPlace: false });
+// var menu = gui.addFolder("folder");
+// menu.add(text, "message");
+// menu.add(text, "speed", -5, 5);
+// menu.add(text, "displayOutline");
+// menu.add(text, "progress", 0, 1, 0.001);
 
-var customContainer = document.getElementById("my-gui-container");
-customContainer.appendChild(gui.domElement);
-console.log(text.progress);
+// var customContainer = document.getElementById("my-gui-container");
+// customContainer.appendChild(gui.domElement);
+// console.log(text.progress);
 
-const materialTest = new THREE.ShaderMaterial({
-  uniforms: {
-    time: { value: 1.0 },
-    uTexture: { value: texture19 },
-    uTextureSize: { value: new THREE.Vector2(100, 100) },
-    uCorners: { value: new THREE.Vector4(1, 1, 1, 1) },
-    uResolution: { value: new THREE.Vector2(1200, 1200) },
-    uProgress: { value: 0.0 },
-    resolution: { value: new THREE.Vector2() },
-    uQuadSize: { value: new THREE.Vector2(300, 300) },
-  },
-  vertexShader: testVertexShader,
-  fragmentShader: testFragmentShader,
-  side: THREE.DoubleSide,
-  wireframe: false,
+// const materialTest = new THREE.ShaderMaterial({
+//   uniforms: {
+//     time: { value: 1.0 },
+//     uTexture: { value: texture19 },
+//     uTextureSize: { value: new THREE.Vector2(100, 100) },
+//     uCorners: { value: new THREE.Vector4(1, 1, 1, 1) },
+//     uResolution: { value: new THREE.Vector2(1200, 1200) },
+//     uProgress: { value: 0.0 },
+//     resolution: { value: new THREE.Vector2() },
+//     uQuadSize: { value: new THREE.Vector2(300, 300) },
+//   },
+//   vertexShader: testVertexShader,
+//   fragmentShader: testFragmentShader,
+//   side: THREE.DoubleSide,
+//   wireframe: false,
 
-  // opacity: 0.5,
-  // transparent: true,
-});
+//   // opacity: 0.5,
+//   // transparent: true,
+// });
 
 // gsap to animate corners
 
@@ -317,31 +359,35 @@ const materialTest = new THREE.ShaderMaterial({
 //   }
 //   // 0.3
 // );
-const planeTest = new THREE.Mesh(planeGeometry, materialTest);
-// new THREE.MeshBasicMaterial({ color: "#ff0000" })
-scene.add(planeTest);
+// const planeTest = new THREE.Mesh(planeGeometry, materialTest);
+// // new THREE.MeshBasicMaterial({ color: "#ff0000" })
+// scene.add(planeTest);
 
 // planeTest.postition.set(0, 0, 4);
 
-planeTest.position.z = 0;
-planeTest.position.y = 0;
-planeTest.position.x = 0;
-planeTest.rotation.z = 0.0;
+// planeTest.position.z = 0;
+// planeTest.position.y = 0;
+// planeTest.position.x = 0;
+// planeTest.rotation.z = 0.0;
 
 const material1 = new THREE.ShaderMaterial({
   uniforms: {
     // uTime: { value: 0 },
+    time: { value: 1.0 },
     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
     // uSize: { value: 50 },
     uTexture: { value: texture },
-    uCorners: { value: new THREE.Vector2(0, 0) },
-
+    uCorners: { value: new THREE.Vector4(1, 1, 1, 1) },
+    uResolution: { value: new THREE.Vector2(1200, 1200) },
     // uScale: { value: new THREE.Vector2(0.0, 0.0) },
     // uAlpha: { value: 0.0 },
+    uProgress: { value: 0.0 },
     uOffset: { value: new THREE.Vector2(0.0, 0.0) },
     scaleX: { type: "f", value: 1.0 },
     scaleY: { type: "f", value: 1.0 },
     scaleZ: { type: "f", value: 1.0 },
+    // resolution: { value: new THREE.Vector2() },
+    // uQuadSize: { value: new THREE.Vector2(300, 300) },
     // uMouseTest: { value: new THREE.Vector2(0.0, 0.0) },
   },
   vertexShader: rgbVertexShader,
@@ -530,9 +576,11 @@ const planePos = () => {
   });
 };
 
-plane1.position.set(0, 0, 4);
-plane2.position.set(1, -1, 4);
-plane3.position.set(0, -2, 4);
+plane1.position.set(0, 2, 4);
+plane2.position.set(1, 1, 4);
+plane3.position.set(0, 0, 4);
+plane4.position.set(-1, -1, 4);
+plane5.position.set(1, -2, 4);
 
 const sizes = {
   width: window.innerWidth,
@@ -611,7 +659,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // console.log(landscape2.position.y);
 
-console.log(sideText.innerHTML);
+// console.log(sideText.innerHTML);
 window.addEventListener("mousemove", (event) => {
   mouse.x = (event.clientX / sizes.width) * 2 - 1;
   mouse.y = -(event.clientY / sizes.height) * 2 + 1;
@@ -641,18 +689,18 @@ window.addEventListener("mousemove", (event) => {
     plane20,
   ];
   const intersects = raycaster.intersectObjects(objectsToTest);
-
+  let thumbEase = "expo.inOut";
   // console.log(sideText);
   // object1.name = "object1";
   if (intersects.length) {
     if (!currentIntersect) {
       console.log("mouse enter");
       console.log(intersects[0].object.name);
-      let sideText = document.getElementById("sideText");
-      console.log(sideText);
-      intersects[0].object == plane1
-        ? (sideText.innerHTML = "Facebook")
-        : (sideText.innerHTML = "");
+      // let sideText = document.getElementById("sideText");
+      // console.log(sideText);
+      // intersects[0].object == plane1
+      //   ? (sideText.innerHTML = "Facebook")
+      //   : (sideText.innerHTML = "");
 
       // plane1.object.name == "plane1" ? (sideText.innerHTML = "Facebook") : null;
       // console.log(sideText);
@@ -664,55 +712,72 @@ window.addEventListener("mousemove", (event) => {
         z: 1,
         x: 1.5,
         y: 1.5,
-        ease: "expo.out",
-      });
-      gsap.to(sideText, {
-        duration: 1,
-        delay: 0,
-        repeat: 0,
-        // onComplete: onComplete,
-        z: 0,
-        x: window.innerWidth * 0.17,
-        y: 0,
-        opacity: 1,
+
         ease: "expo.out",
       });
 
-      // corners distorion effect
-      gsap
-        .timeline()
-        .to(materialTest.uniforms.uCorners.value, {
-          x: 2,
-          // ease: "expo.inOut",
-          duration: 0.5,
-        })
-        .to(
-          materialTest.uniforms.uCorners.value,
-          {
-            y: 2,
-            // ease: "expo.inOut",
-            duration: 0.5,
-          },
-          1.0
-        )
-        .to(
-          materialTest.uniforms.uCorners.value,
-          {
-            z: 2,
-            // ease: "expo.inOut",
-            duration: 0.5,
-          },
-          2.0
-        )
-        .to(
-          materialTest.uniforms.uCorners.value,
-          {
-            w: 2,
-            // ease: "expo.inOut",
-            duration: 0.5,
-          },
-          3.0
-        );
+      // gsap.to(intersects[0].object.rotation, {
+      //   duration: 1,
+      //   delay: 0,
+      //   repeat: 0,
+      //   // onComplete: onComplete,
+      //   // y: Math.PI / 2,
+      //   y: 0.2,
+
+      //   ease: "expo.out",
+      // });
+      // gsap.to(sideText, {
+      //   duration: 1,
+      //   delay: 0,
+      //   repeat: 0,
+      //   // onComplete: onComplete,
+      //   z: 0,
+      //   x: window.innerWidth * 0.17,
+      //   y: 0,
+      //   opacity: 1,
+      //   ease: "expo.out",
+      // });
+
+      // corners distorion effect in
+      // gsap
+      //   .timeline()
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       x: 2,
+      //       ease: "slow(0.7, 0.7, false)",
+      //       delay: 0,
+      //       duration: 1,
+      //     },
+      //     0.03
+      //   )
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       y: 2,
+      //       ease: "slow(0.7, 0.7, false)",
+      //       duration: 1,
+      //     },
+      //     0.04
+      //   )
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       z: 2,
+      //       ease: "slow(0.7, 0.7, false)",
+      //       duration: 1,
+      //     },
+      //     0.05
+      //   )
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       w: 2,
+      //       ease: "back.out(-5.7)",
+      //       duration: 1,
+      //     },
+      //     0.06
+      //   );
       console.log(intersects[0].object.scale);
     }
     currentIntersect = intersects[0];
@@ -733,19 +798,65 @@ window.addEventListener("mousemove", (event) => {
 
         ease: "expo.out",
       });
-      gsap.to(sideText, {
-        duration: 1,
-        delay: 0,
-        repeat: 0,
-        // onComplete: onComplete,
-        z: 0,
-        x: 0,
-        y: 0,
-        opacity: 0,
-        ease: "expo.out",
-      });
+      // gsap.to(currentIntersect.object.rotation, {
+      //   duration: 0.5,
+      //   delay: 0,
+      //   repeat: 0,
+      //   // onComplete: onComplete,
+      //   // y: Math.PI / 2,
+      //   y: 0,
+
+      //   ease: "power2.out",
+      // });
+      // gsap.to(sideText, {
+      //   duration: 1,
+      //   delay: 1,
+      //   repeat: 0,
+      //   // onComplete: onComplete,
+      //   z: 0,
+      //   x: 0,
+      //   y: 0,
+      //   opacity: 0,
+      //   ease: "expo.out",
+      // });
+      // corners distorion effect out
+      // gsap
+      //   .timeline()
+      //   .to(materialTest.uniforms.uCorners.value, {
+      //     x: 1,
+      //     ease: "expo.out",
+      //     delay: 0,
+      //     duration: 0.1,
+      //   })
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       y: 1,
+      //       ease: "expo.out",
+      //       duration: 0.4,
+      //     },
+      //     0.01
+      //   )
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       z: 1,
+      //       ease: "expo.out",
+      //       duration: 0.8,
+      //     },
+      //     0.02
+      //   )
+      //   .to(
+      //     materialTest.uniforms.uCorners.value,
+      //     {
+      //       w: 1,
+      //       ease: "expo.out",
+      //       duration: 1.0,
+      //     },
+      //     0.03
+      //   );
     }
-    sideText.innerHTML = "";
+    // sideText.innerHTML = "";
     currentIntersect = null;
   }
 });
@@ -1285,19 +1396,20 @@ function onMouseWheel(event) {
   // yScroll2 = event.deltaY * 0.0007;
 }
 
-let scrollEvent = () => {
-  document.addEventListener("mousewheel", (e) => {
-    scrollTarget = camera.position.y;
-  });
-};
-scrollEvent();
-window.addEventListener("scroll", scrollEvent());
+// let scrollEvent = () => {
+//   document.addEventListener("mousewheel", (e) => {
+//     scrollTarget = camera.position.y;
+//   });
+// };
+// scrollEvent();
+// window.addEventListener("scroll", scrollEvent());
 
 function lerp(start, end, t) {
   return start * (1 - t) + end * t;
 }
-console.log(materialTest);
+// console.log(materialTest);
 // let time = 0;
+
 const tick = () => {
   // console.log(materialTest.uniforms.uResolution);
   // time += 0.05;
@@ -1342,6 +1454,7 @@ const tick = () => {
   // console.log(target2);
   material2.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
+
     lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material3.uniforms.uOffset.value.set(
@@ -1351,17 +1464,20 @@ const tick = () => {
 
   material4.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material5.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material6.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    // -(target.y - offSet.y) * 0.3,
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material7.uniforms.uOffset.value.set(
@@ -1424,6 +1540,18 @@ const tick = () => {
     -(target.y - offSet.y) * 0.3
   );
 
+  // gsap.to(ufo2.position, {
+  //   // bezier: flightPath,
+  //   ease: "Power1.easeInOut",
+  //   duration: 1,
+  //   // x: scrollPosition * 500,
+  //   y: -scrollPosition * 500,
+  //   // onComplete: (ufo2.position.x = 2),
+  // });
+
+  ufo2.position.y = Math.sin(elapsedTime) * 0.5;
+  ufo2.position.x += scrollTarget;
+  ufo2.rotation.y += scrollTarget;
   // Default camera setting
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
