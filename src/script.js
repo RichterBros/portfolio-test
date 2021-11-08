@@ -54,7 +54,7 @@ let mixer = null;
 
 gltfLoader.load("/models/landscape3.gltf", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, -0.2, 0.9);
+  gltf.scene.position.set(0, -0.2, 0.7);
   gltf.scene.rotation.set(0.3, 0.3, 0);
   scene.add(gltf.scene);
   // model.name = 'model';
@@ -76,7 +76,7 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
 
 gltfLoader.load("/models/ufo3.glb", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, -7, 3);
+  gltf.scene.position.set(-15, -26, 2.7);
 
   ufo2 = gltf.scene;
 
@@ -130,7 +130,7 @@ var landObject = scene.getObjectByName("landscape3");
 // Fireflies
 // Geometry
 const firefliesGeometry = new THREE.BufferGeometry();
-const firefliesCount = 6000;
+const firefliesCount = 8000;
 const positionArray = new Float32Array(firefliesCount * 3);
 const positionArray2 = new Float32Array();
 const scaleArray = new Float32Array(firefliesCount);
@@ -138,7 +138,7 @@ const scaleArray = new Float32Array(firefliesCount);
 for (let i = 0; i < firefliesCount; i++) {
   positionArray[i * 3 + 0] = (Math.random() - 0.5) * 25;
   // positionArray[i * 3 + 1] = Math.random() * 1.5 * 10;
-  positionArray[i * 3 + 1] = (Math.random() - 0.2) * 10;
+  positionArray[i * 3 + 1] = (Math.random() - 0.2) * 50;
   positionArray[i * 3 + 2] = (Math.random() - 0.5) * 15;
 
   scaleArray[i] = Math.random();
@@ -195,12 +195,7 @@ scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.castShadow = false;
-// directionalLight.shadow.mapSize.set(1024, 1024);
-// directionalLight.shadow.camera.far = 15;
-// directionalLight.shadow.camera.left = -7;
-// directionalLight.shadow.camera.top = 7;
-// directionalLight.shadow.camera.right = 7;
-// directionalLight.shadow.camera.bottom = -7;
+
 directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
 
@@ -581,6 +576,21 @@ plane2.position.set(1, 1, 4);
 plane3.position.set(0, 0, 4);
 plane4.position.set(-1, -1, 4);
 plane5.position.set(1, -2, 4);
+plane6.position.set(-0.3, -3, 4);
+plane7.position.set(0, -4, 4);
+plane8.position.set(0.3, -5, 4);
+plane9.position.set(-0.3, -6, 4);
+plane10.position.set(0.7, -7, 4);
+plane11.position.set(0.7, -8, 4);
+plane12.position.set(0, -9, 4);
+plane13.position.set(1, -10, 4);
+plane14.position.set(0, -11, 4);
+plane15.position.set(-1, -12, 4);
+plane16.position.set(1, -13, 4);
+plane17.position.set(-0.3, -14, 4);
+plane18.position.set(0, -15, 4);
+plane19.position.set(0.3, -16, 4);
+plane20.position.set(-0.3, -17, 4);
 
 const sizes = {
   width: window.innerWidth,
@@ -1402,8 +1412,11 @@ function onMouseWheel(event) {
 //   });
 // };
 // scrollEvent();
-// window.addEventListener("scroll", scrollEvent());
 
+// document.addEventListener("scroll", function (e) {
+//   window.scrollY -= scrollPosition;
+// });
+console.log(camera.position.y);
 function lerp(start, end, t) {
   return start * (1 - t) + end * t;
 }
@@ -1423,6 +1436,7 @@ const tick = () => {
   scrollPosition += lerp(scrollPosition, scrollTarget, ease) * 0.35;
   scrollPosition *= 0.655;
   scrollTarget *= 0.95;
+
   // let scr = scrollTarget;
   // console.log(scrollTarget);
   // landscapeOn();
@@ -1482,62 +1496,62 @@ const tick = () => {
 
   material7.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material8.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material9.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   material10.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material11.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material12.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material13.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material14.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material15.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material16.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material17.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material18.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material19.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
   material20.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    -(target.y - offSet.y) * 0.3
+    lerp(scrollPosition, scrollTarget, ease2) / 2
   );
 
   // gsap.to(ufo2.position, {
@@ -1549,7 +1563,7 @@ const tick = () => {
   //   // onComplete: (ufo2.position.x = 2),
   // });
 
-  ufo2.position.y = Math.sin(elapsedTime) * 0.5;
+  ufo2.position.y = Math.sin(elapsedTime) * 0.5 - 10;
   ufo2.position.x += scrollTarget;
   ufo2.rotation.y += scrollTarget;
   // Default camera setting
