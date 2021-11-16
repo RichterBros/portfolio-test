@@ -896,7 +896,7 @@ var images_modalContact = document.getElementById("myModalContact");
 // When the user clicks anywhere outside of the modal, close it
 
 window.onclick = function (event) {
-  var video = document.getElementById("myVideoPlayer");
+  // var video = document.getElementById("myVideoPlayer");
   function stopVideo() {
     videocontainer.pause();
     videocontainer.currentTime = 0;
@@ -1050,7 +1050,8 @@ var newmp4 =
 var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
 
-var newmp43 = "https://player.vimeo.com/video/646596608";
+var newmp43 =
+  "https://www.mediafire.com/file/rv3s6jn3xvq0rie/planters_afur4u.mp4/file";
 // "https://player.vimeo.com/video/646596608";
 
 var newmp44 =
