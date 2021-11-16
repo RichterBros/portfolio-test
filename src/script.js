@@ -1051,7 +1051,7 @@ var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
 
 var newmp43 =
-  "https://www.mediafire.com/file/rv3s6jn3xvq0rie/planters_afur4u.mp4/file";
+  "https://drive.google.com/file/d/1gOftD9oBpXPtFdKdm3mnI8FY-nBU3M3e/view?usp=sharing";
 // "https://player.vimeo.com/video/646596608";
 
 var newmp44 =
@@ -1442,7 +1442,7 @@ const tick = () => {
     lerp(window.scrollY / sizes.height, window.scrollY, ease) * 0.0055;
   // scrollPosition *= 0.655;
   // scrollTarget *= 0.95;
-  console.log(window.scrollY);
+
   // let scr = scrollTarget;
   // console.log(scrollTarget);
   // landscapeOn();
