@@ -571,7 +571,7 @@ const planePos = () => {
   });
 };
 
-plane1.position.set(0, 2, 4);
+plane1.position.set(2, 0, 4);
 plane2.position.set(1, 1, 4);
 plane3.position.set(0, 0, 4);
 plane4.position.set(-1, -1, 4);
@@ -1050,8 +1050,8 @@ var newmp4 =
 var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
 
-var newmp43 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634950067/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
+var newmp43 = "https://vimeo.com/646596608";
+// "https://player.vimeo.com/video/646596608";
 
 var newmp44 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635202662/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
@@ -1420,9 +1420,13 @@ console.log(camera.position.y);
 function lerp(start, end, t) {
   return start * (1 - t) + end * t;
 }
+let scrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+  scrollY = window.scrollY;
+});
 // console.log(materialTest);
 // let time = 0;
-
+let previousTime = 0;
 const tick = () => {
   // console.log(materialTest.uniforms.uResolution);
   // time += 0.05;
@@ -1431,12 +1435,13 @@ const tick = () => {
 
   // tl.progress(text.progress);
 
-  let ease = 0.95;
+  let ease = 0.3;
   let ease2 = 0.00025;
-  scrollPosition += lerp(scrollPosition, scrollTarget, ease) * 0.35;
-  scrollPosition *= 0.655;
-  scrollTarget *= 0.95;
-
+  scrollPosition *=
+    lerp(window.scrollY / sizes.height, window.scrollY, ease) * 0.0055;
+  // scrollPosition *= 0.655;
+  // scrollTarget *= 0.95;
+  console.log(window.scrollY);
   // let scr = scrollTarget;
   // console.log(scrollTarget);
   // landscapeOn();
@@ -1445,12 +1450,18 @@ const tick = () => {
   // target.y = (1 - mouse.y) * 0.2;
   const elapsedTime = clock.getElapsedTime();
   // Scroll
-
+  const deltaTime = elapsedTime - previousTime;
+  previousTime = elapsedTime;
   // scrollPosition += yScroll;
   // scrollPosition2 += yScroll2;
   // yScroll *= 0.9;
   // yScroll2 *= 0.9;
-  camera.position.y -= scrollPosition;
+  // camera.position.y -= scrollPosition;
+  // camera.position.y = -scrollY / sizes.height;
+
+  camera.position.y += (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime;
+
+  // camera.position.y -= scrollPosition * 0.3;
 
   // console.log(camera.position.y);
   target.x = mouse.x * 0.08;
@@ -1463,17 +1474,20 @@ const tick = () => {
     // offSet.x * 0.0,
     // lerp(scrollPosition, scrollTarget, ease) * 0.009
     // (scr *= Math.cos(1) * 0.03),
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime
   );
   // console.log(target2);
   material2.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime
   );
   material3.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime
   );
 
   material4.uniforms.uOffset.value.set(
@@ -1564,8 +1578,9 @@ const tick = () => {
   // });
 
   ufo2.position.y = Math.sin(elapsedTime) * 0.5 - 10;
-  ufo2.position.x += scrollTarget;
-  ufo2.rotation.y += scrollTarget;
+  ufo2.position.x = scrollY * 0.0003;
+  ufo2.rotation.y = scrollTarget;
+  // console.log(ufo2.position.x);
   // Default camera setting
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
