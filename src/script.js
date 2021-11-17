@@ -1044,14 +1044,13 @@ console.log(currentIntersect);
 // var videobutton = document.getElementById("videolink1");
 var videocontainer = document.getElementById("videoclip");
 var videosource = document.getElementById("mp4video");
-var newmp4 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854784/FbStartBright_video_V9_ym7azq.mp4";
+var newmp4 = "http://richterbrosmedia.com/video/FbStartBright_video_V9.mp4";
 
 var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
 
 var newmp43 =
-  "https://drive.google.com/file/d/1gOftD9oBpXPtFdKdm3mnI8FY-nBU3M3e/view?usp=sharing";
+  "http://richterbrosmedia.com/video/Huddle_PushPull_Blue_2021_04_05.mp4";
 // "https://player.vimeo.com/video/646596608";
 
 var newmp44 =
