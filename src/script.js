@@ -1044,7 +1044,7 @@ console.log(currentIntersect);
 // var videobutton = document.getElementById("videolink1");
 var videocontainer = document.getElementById("videoclip");
 var videosource = document.getElementById("mp4video");
-var newmp4 = "http://richterbrosmedia.com/video/FbStartBright_video_V9.mp4";
+var newmp4 = "/videos/FbStartBright_video_V9_ym7azq.mp4";
 
 var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
