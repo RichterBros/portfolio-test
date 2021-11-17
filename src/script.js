@@ -1046,14 +1046,12 @@ var videocontainer = document.getElementById("videoclip");
 var videosource = document.getElementById("mp4video");
 var newmp4 = "/videos/FbStartBright_video_V9_ym7azq.mp4";
 
-var newmp42 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
+var newmp42 = "/videos/boxtrolls_uwlqcu.mp4";
 
 var newmp43 = "/videos/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
 // "https://player.vimeo.com/video/646596608";
 
-var newmp44 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635202662/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
+var newmp44 = "/videos/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
 
 var newmp45 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635282727/Fox_Sports_web_pcxuaz.mp4";
