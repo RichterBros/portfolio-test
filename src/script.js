@@ -1049,8 +1049,7 @@ var newmp4 = "/videos/FbStartBright_video_V9_ym7azq.mp4";
 var newmp42 =
   "https://res.cloudinary.com/dvzxotcmb/video/upload/v1634854777/boxtrolls_uwlqcu.mp4";
 
-var newmp43 =
-  "http://richterbrosmedia.com/video/Huddle_PushPull_Blue_2021_04_05.mp4";
+var newmp43 = "/videos/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
 // "https://player.vimeo.com/video/646596608";
 
 var newmp44 =
