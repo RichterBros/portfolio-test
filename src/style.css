@@ -5,7 +5,7 @@
 
 html,
 body {
-  height: 400vh;
+  height: 700vh;
   overflow-y: scroll;
 }
 .webgl {

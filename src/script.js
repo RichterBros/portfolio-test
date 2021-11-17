@@ -1053,38 +1053,22 @@ var newmp43 = "/videos/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
 
 var newmp44 = "/videos/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
 
-var newmp45 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635282727/Fox_Sports_web_pcxuaz.mp4";
-var newmp46 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635283250/IbmWeb2_nyae84.mp4";
-var newmp47 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635284068/ParanormanCredits_web2_khcvtx.mp4";
-var newmp48 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635284901/Nissan_Holiday_Spirit_Everyone_web_skw91k.mp4";
-var newmp49 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285300/FA18_RN_React_Pillows_v007W2_p7zel9.mp4";
-var newmp410 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285558/KIA_web_bz95z7.mp4";
-var newmp411 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285791/Kroger_Digital_Engagement_hhp9zg.mp4";
-var newmp412 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285844/origin_genomics_web_bwwxoj.mp4";
-var newmp413 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285804/HouseSpecial_Kroger_Refresh_cc6bxq.mp4";
-var newmp414 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635285997/BTeam_web2_djtyoc.mp4";
-var newmp415 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635286387/Toyota_safetyDemo_web_h1uwff.mp4";
-var newmp416 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635286742/Oxfam_GiftBetter_obv985.mp4";
-var newmp417 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635287547/VerizonAnthem_web2_fsion9.mp4";
-var newmp418 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635288168/track_town_web2_vyb4oo.mp4";
-var newmp419 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635288448/planters_afur4u.mp4";
-var newmp420 =
-  "https://res.cloudinary.com/dvzxotcmb/video/upload/v1635289373/LAIKA_TRU2011_N2D1_Generic_web_d5gffx.mp4";
+var newmp45 = "/videos/Fox_Sports_web_pcxuaz.mp4";
+var newmp46 = "/videos/IbmWeb2_nyae84.mp4";
+var newmp47 = "/videos/ParanormanCredits_web2_khcvtx.mp4";
+var newmp48 = "/videos/Nissan_Holiday_Spirit_Everyone_web_skw91k.mp4";
+var newmp49 = "/videos/FA18_RN_React_Pillows_v007W2_p7zel9.mp4";
+var newmp410 = "/videos/KIA_web_bz95z7.mp4";
+var newmp411 = "/videos/Kroger_Digital_Engagement_hhp9zg.mp4";
+var newmp412 = "/videos/origin_genomics_web_bwwxoj.mp4";
+var newmp413 = "/videos/HouseSpecial_Kroger_Refresh_cc6bxq.mp4";
+var newmp414 = "/videos/BTeam_web2_djtyoc.mp4";
+var newmp415 = "/videos/Toyota_safetyDemo_web_h1uwff.mp4";
+var newmp416 = "/videos/Oxfam_GiftBetter_obv985.mp4";
+var newmp417 = "/videos/VerizonAnthem_web2_fsion9.mp4";
+var newmp418 = "/videos/track_town_web2_vyb4oo.mp4";
+var newmp419 = "/videos/planters_afur4u.mp4";
+var newmp420 = "/videos/LAIKA_TRU2011_N2D1_Generic_web_d5gffx.mp4";
 
 // document.getElementById("videolink1");
 window.addEventListener("click", () => {
@@ -1575,7 +1559,7 @@ const tick = () => {
   // });
 
   ufo2.position.y = Math.sin(elapsedTime) * 0.5 - 10;
-  ufo2.position.x = scrollY * 0.0003;
+  ufo2.position.x += scrollY * 0.003;
   ufo2.rotation.y = scrollTarget;
   // console.log(ufo2.position.x);
   // Default camera setting
