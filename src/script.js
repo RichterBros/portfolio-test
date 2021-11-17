@@ -76,7 +76,7 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
 
 gltfLoader.load("/models/ufo3.glb", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(-15, -26, 2.7);
+  gltf.scene.position.set(0, 0, 2.7);
 
   ufo2 = gltf.scene;
 
@@ -1354,19 +1354,6 @@ window.addEventListener("click", () => {
 // };
 const clock = new THREE.Clock();
 
-// console.log(currentIntersect);
-// let landscapeOn = () => {
-//   gsap.to(landscape.position, {
-//     duration: 1,
-//     delay: 0,
-//     repeat: 0,
-//     z: 0,
-//     x: 0,
-//     y: 0,
-//     yoyo: false,
-//     ease: "slow(0.5, 0.8)",
-//   });
-// };
 let y = 0;
 let position = 0;
 
@@ -1408,6 +1395,7 @@ window.addEventListener("scroll", () => {
 // console.log(materialTest);
 // let time = 0;
 let previousTime = 0;
+
 const tick = () => {
   // console.log(materialTest.uniforms.uResolution);
   // time += 0.05;
@@ -1433,6 +1421,8 @@ const tick = () => {
   // Scroll
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
+
+  let picDistort = (-scrollY * 0.003 - camera.position.y) * 2 * deltaTime;
   // scrollPosition += yScroll;
   // scrollPosition2 += yScroll2;
   // yScroll *= 0.9;
@@ -1456,97 +1446,113 @@ const tick = () => {
     // lerp(scrollPosition, scrollTarget, ease) * 0.009
     // (scr *= Math.cos(1) * 0.03),
     // lerp(scrollPosition, scrollTarget, ease2) / 2
-    (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime
+    picDistort
   );
   // console.log(target2);
   material2.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
     // lerp(scrollPosition, scrollTarget, ease2) / 2
-    (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime
+    picDistort
   );
   material3.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
     // lerp(scrollPosition, scrollTarget, ease2) / 2
-    (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime
+    picDistort
   );
 
   material4.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   material5.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   material6.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // -(target.y - offSet.y) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   material7.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   material8.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   material9.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   material10.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material11.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material12.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material13.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material14.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material15.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material16.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material17.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material18.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material19.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
   material20.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    lerp(scrollPosition, scrollTarget, ease2) / 2
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
   );
 
   // gsap.to(ufo2.position, {
@@ -1558,10 +1564,11 @@ const tick = () => {
   //   // onComplete: (ufo2.position.x = 2),
   // });
 
-  ufo2.position.y = Math.sin(elapsedTime) * 0.5 - 10;
-  ufo2.position.x += scrollY * 0.003;
-  ufo2.rotation.y = scrollTarget;
-  // console.log(ufo2.position.x);
+  // ufo2.position.y = Math.sin(elapsedTime) * 0.5 - 10;
+  // ufo2.position.x += scrollY * 0.003;
+  // ufo2.rotation.y = scrollTarget;
+
+  console.log(ufo2.position.x);
   // Default camera setting
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
