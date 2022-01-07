@@ -54,7 +54,7 @@ let mixer = null;
 
 gltfLoader.load("/models/landscape3.gltf", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, -0.2, 0.7);
+  gltf.scene.position.set(0, -0.2, 0.65);
   gltf.scene.rotation.set(0.3, 0.3, 0);
   scene.add(gltf.scene);
   // model.name = 'model';
@@ -76,7 +76,8 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
 
 gltfLoader.load("/models/ufo3.glb", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(0, 0, 2.7);
+  gltf.scene.position.set(-5, -4.0, 6);
+  gltf.scene.rotation.set(0.3, 0, 0);
 
   ufo2 = gltf.scene;
 
@@ -248,6 +249,7 @@ let texture20 = new THREE.TextureLoader().load(
   "/textures/LAIKA_TRU2011_N2D1_Generic_web_thumb.jpg"
 );
 
+let texture21 = new THREE.TextureLoader().load("/textures/portfolio-text.jpg");
 // immediately use the texture for material creation
 // const material = new THREE.MeshBasicMaterial({ map: texture });
 
@@ -255,6 +257,7 @@ const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
 const offSet2 = new Vector2(0, 0); // Mesh position
 const planeGeometry = new THREE.PlaneGeometry(1, 0.5, 5, 5);
+const planeGeometryText = new THREE.PlaneGeometry(2, 1, 5, 5);
 // console.log(geometry.parameters.width);
 
 // let textureArr = [texture, texture2];
@@ -473,6 +476,16 @@ material19.uniforms.uTexture.value = texture19;
 let material20 = material1.clone();
 material20.uniforms.uTexture.value = texture20;
 
+let material21 = material1.clone();
+material21.uniforms.uTexture.value = texture21;
+material21.depthTest = true;
+material21.depthWrite = true;
+material21.transparent = true;
+material21.blending = THREE.CustomBlending;
+material21.blendEquation = THREE.MaxEquation;
+material21.blendSrc = THREE.SrcAlphaFactor;
+material21.blendDst = THREE.OneMinusSrcAlphaFactor;
+
 const plane1 = new THREE.Mesh(planeGeometry, material1);
 plane1.name = "plane1";
 const plane2 = new THREE.Mesh(planeGeometry, material2);
@@ -496,6 +509,7 @@ const plane17 = new THREE.Mesh(planeGeometry, material17);
 const plane18 = new THREE.Mesh(planeGeometry, material18);
 const plane19 = new THREE.Mesh(planeGeometry, material19);
 const plane20 = new THREE.Mesh(planeGeometry, material20);
+const plane21 = new THREE.Mesh(planeGeometryText, material21);
 
 scene.add(plane1);
 
@@ -526,6 +540,7 @@ scene.add(plane17);
 scene.add(plane18);
 scene.add(plane19);
 scene.add(plane20);
+scene.add(plane21);
 
 let planeArr = [
   [plane1, plane2, plane3, plane4, plane5],
@@ -589,8 +604,9 @@ plane15.position.set(-1, -12, 4);
 plane16.position.set(1, -13, 4);
 plane17.position.set(-0.3, -14, 4);
 plane18.position.set(0, -15, 4);
-plane19.position.set(0.3, -16, 4);
-plane20.position.set(-0.3, -17, 4);
+plane19.position.set(-1.5, -14.3, 4);
+plane20.position.set(2, -14.5, 4);
+plane21.position.set(-0.8, 0.5, 5);
 
 const sizes = {
   width: window.innerWidth,
@@ -910,7 +926,6 @@ window.onclick = function (event) {
     contactButton.innerHTML = "about / contact";
 
     gsap.to(camera.position, {
-      y: 0,
       z: 6,
       duration: 1,
       ease: "power3.inOut",
@@ -947,7 +962,7 @@ const contact = (event) => {
           // y: 5,
           // z: 2,
           // ease: "circ.out",
-          y: 3,
+          // y: 3,
           z: -3,
           duration: 1,
           ease: "power3.inOut",
@@ -957,7 +972,7 @@ const contact = (event) => {
           // y: 5,
           // z: 2,
           // ease: "circ.out",
-          y: 0,
+          // y: 0,
           z: 6,
           duration: 1,
           ease: "power3.inOut",
@@ -1030,7 +1045,7 @@ let modalsContact = () => {
     modal.style.display = "none";
     contactButton.innerHTML = "about / contact";
     gsap.to(camera.position, {
-      keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
+      keyframes: [{ z: 6, duration: 1, ease: "power3.inOut" }],
     });
     clicked = false;
   };
@@ -1403,7 +1418,7 @@ const tick = () => {
   // materialTest.uniforms.uProgress.value = text.progress;
 
   // tl.progress(text.progress);
-
+  // console.log(camera.position);
   let ease = 0.3;
   let ease2 = 0.00025;
   scrollPosition *=
@@ -1555,6 +1570,13 @@ const tick = () => {
     picDistort
   );
 
+  material21.uniforms.uOffset.value.set(
+    (target.x - offSet.x) * 0.3,
+
+    // lerp(scrollPosition, scrollTarget, ease2) / 2
+    picDistort
+  );
+
   // gsap.to(ufo2.position, {
   //   // bezier: flightPath,
   //   ease: "Power1.easeInOut",
@@ -1563,12 +1585,16 @@ const tick = () => {
   //   y: -scrollPosition * 500,
   //   // onComplete: (ufo2.position.x = 2),
   // });
+  // console.log(ufo2.position.x);
 
-  // ufo2.position.y = Math.sin(elapsedTime) * 0.5 - 10;
   // ufo2.position.x += scrollY * 0.003;
-  // ufo2.rotation.y = scrollTarget;
+  ufo2.rotation.y += -picDistort * 1.7;
+  ufo2.rotation.x -= -picDistort * 0.2;
+  ufo2.position.x += -picDistort * 1.7;
+  ufo2.position.y += picDistort * 1.5;
+  ufo2.position.z += picDistort * 1.35;
 
-  console.log(ufo2.position.x);
+  // console.log(ufo2.position.x);
   // Default camera setting
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
