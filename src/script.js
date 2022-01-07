@@ -256,7 +256,7 @@ let texture21 = new THREE.TextureLoader().load("/textures/portfolio-text.jpg");
 const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
 const offSet2 = new Vector2(0, 0); // Mesh position
-const planeGeometry = new THREE.PlaneGeometry(1, 0.5, 5, 5);
+const planeGeometry = new THREE.PlaneGeometry(1.2, 0.7, 5, 5);
 const planeGeometryText = new THREE.PlaneGeometry(2, 1, 5, 5);
 // console.log(geometry.parameters.width);
 
@@ -424,6 +424,13 @@ material2.uniforms.uTexture.value = texture2;
 
 let material3 = material1.clone();
 material3.uniforms.uTexture.value = texture3;
+// material3.depthTest = true;
+// material3.depthWrite = true;
+// material3.transparent = true;
+// material3.blending = THREE.CustomBlending;
+// material3.blendEquation = THREE.MaxEquation;
+// material3.blendSrc = THREE.SrcAlphaFactor;
+// material3.blendDst = THREE.OneMinusSrcAlphaFactor;
 
 let material4 = material1.clone();
 material4.uniforms.uTexture.value = texture4;
@@ -590,10 +597,10 @@ plane1.position.set(2, 0, 4);
 plane2.position.set(1, 1, 4);
 plane3.position.set(0, 0, 4);
 plane4.position.set(-1, -1, 4);
-plane5.position.set(1, -2, 4);
-plane6.position.set(-0.3, -3, 4);
-plane7.position.set(0, -4, 4);
-plane8.position.set(0.3, -5, 4);
+plane5.position.set(1, -1.5, 4);
+plane6.position.set(-0.3, -2.5, 4);
+plane7.position.set(0, -3.6, 4);
+plane8.position.set(0.3, -4.8, 4);
 plane9.position.set(-0.3, -6, 4);
 plane10.position.set(0.7, -7, 4);
 plane11.position.set(0.7, -8, 4);
@@ -604,7 +611,7 @@ plane15.position.set(-1, -12, 4);
 plane16.position.set(1, -13, 4);
 plane17.position.set(-0.3, -14, 4);
 plane18.position.set(0, -15, 4);
-plane19.position.set(-1.5, -14.3, 4);
+plane19.position.set(-1.9, -14.3, 4);
 plane20.position.set(2, -14.5, 4);
 plane21.position.set(-0.8, 0.5, 5);
 
