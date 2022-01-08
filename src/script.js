@@ -76,7 +76,7 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
 
 gltfLoader.load("/models/ufo3.glb", (gltf) => {
   gltf.scene.scale.set(0.025, 0.025, 0.025);
-  gltf.scene.position.set(-5, -4.0, 6);
+  gltf.scene.position.set(-5, -3.5, 6);
   gltf.scene.rotation.set(0.3, 0, 0);
 
   ufo2 = gltf.scene;
@@ -594,8 +594,10 @@ const planePos = () => {
 };
 //0, 0, 4
 plane1.position.set(2, -0.6, 4);
+plane1.rotation.set(0, 2.5, 0);
 plane2.position.set(0.3, -0.2, 4);
 plane3.position.set(-1.5, -0.5, 4);
+plane3.rotation.set(0, 1, 0);
 plane4.position.set(-1, -1.5, 4);
 plane5.position.set(1, -1.5, 4);
 plane6.position.set(-0.3, -2.5, 4);
