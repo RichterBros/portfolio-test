@@ -592,11 +592,11 @@ const planePos = () => {
     plane.position.x += getRandomInt(-1.0, 2.0);
   });
 };
-
-plane1.position.set(2, 0, 4);
-plane2.position.set(1, 1, 4);
-plane3.position.set(0, 0, 4);
-plane4.position.set(-1, -1, 4);
+//0, 0, 4
+plane1.position.set(2, -0.6, 4);
+plane2.position.set(0, -0.2, 4);
+plane3.position.set(-1.5, -0.5, 4);
+plane4.position.set(-1, -1.5, 4);
 plane5.position.set(1, -1.5, 4);
 plane6.position.set(-0.3, -2.5, 4);
 plane7.position.set(0, -3.6, 4);
@@ -613,12 +613,38 @@ plane17.position.set(-0.3, -14, 4);
 plane18.position.set(0, -15, 4);
 plane19.position.set(-1.9, -14.3, 4);
 plane20.position.set(2, -14.5, 4);
-plane21.position.set(-0.8, 0.5, 5);
+plane21.position.set(0, 0.3, 5);
 
 const sizes = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
+
+const thumbGroup = new THREE.Group();
+thumbGroup.add(plane1);
+thumbGroup.add(plane2);
+thumbGroup.add(plane3);
+thumbGroup.add(plane4);
+thumbGroup.add(plane5);
+thumbGroup.add(plane6);
+thumbGroup.add(plane7);
+thumbGroup.add(plane8);
+thumbGroup.add(plane9);
+thumbGroup.add(plane10);
+thumbGroup.add(plane11);
+thumbGroup.add(plane12);
+thumbGroup.add(plane13);
+thumbGroup.add(plane14);
+thumbGroup.add(plane15);
+thumbGroup.add(plane16);
+thumbGroup.add(plane17);
+thumbGroup.add(plane18);
+thumbGroup.add(plane19);
+thumbGroup.add(plane20);
+
+scene.add(thumbGroup);
+
+thumbGroup.position.y = -0.5;
 
 // let cubeArray = [];
 // for (var k = 0; k < 10; k++) {
