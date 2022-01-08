@@ -594,7 +594,7 @@ const planePos = () => {
 };
 //0, 0, 4
 plane1.position.set(2, -0.6, 4);
-plane2.position.set(0, -0.2, 4);
+plane2.position.set(0.3, -0.2, 4);
 plane3.position.set(-1.5, -0.5, 4);
 plane4.position.set(-1, -1.5, 4);
 plane5.position.set(1, -1.5, 4);
