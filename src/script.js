@@ -2,36 +2,22 @@ import "./style.css";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import gsap from "gsap";
-import { InteractionManager } from "three.interactive";
 import * as dat from "dat.gui";
-import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass.js";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import firefliesVertexShader from "./shaders/fireflies/vertex.glsl";
 import firefliesFragmentShader from "./shaders/fireflies/fragment.glsl";
 import rgbVertexShader from "./shaders/rgb/vertex.glsl";
 import rgbFragmentShader from "./shaders/rgb/fragment.glsl";
 import { Vector2 } from "three";
-import { Vector3 } from "three";
-import { Color } from "three";
+
 import { water2, wireframe2 } from "./water.js";
-import testVertexShader from "./shaders/test/vertex.glsl";
-import testFragmentShader from "./shaders/test/fragment.glsl";
-import ScrollMagic from "scrollmagic";
-//import "ScrollMagic/scrollmagic/minified/plugins/debug.addIndicators.min.js";
 
 // Debug
 
-// gui.domElement.id = "gui";
-console.log(firefliesVertexShader);
-console.log(firefliesFragmentShader);
-
-console.log(gsap);
 const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
 // Scene
 const scene = new THREE.Scene();
-// water2();
+
 // Fog
 
 {
@@ -57,10 +43,9 @@ gltfLoader.load("/models/landscape3.gltf", (gltf) => {
   gltf.scene.position.set(0, -0.2, 0.65);
   gltf.scene.rotation.set(0.3, 0.3, 0);
   scene.add(gltf.scene);
-  // model.name = 'model';
+
   landscape3 = gltf.scene;
 
-  // Add gltf model to scene
   scene.add(landscape3);
 });
 
@@ -70,7 +55,6 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
 
   ufo = gltf.scene;
 
-  // Add gltf model to scene
   scene.add(ufo);
 });
 
@@ -81,51 +65,9 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
 
   ufo2 = gltf.scene;
 
-  // Add gltf model to scene
   scene.add(ufo2);
 });
 
-// Ufo animation
-
-// const flightPath = {
-//   curviness: 1.25,
-//   autoRotate: true,
-//   values: [
-//     { x: 100, y: -20 },
-//     { x: 300, y: 10 },
-//   ],
-// };
-
-// const tween = new gsap.timeline();
-
-// gsap.to(ufo2.position, {
-//   // bezier: flightPath,
-//   ease: "Power1.easeInOut",
-//   duration: 1,
-//   x: -10,
-// });
-
-// const controller = new ScrollMagic.Controller();
-
-// const newScene = new ScrollMagic.Scene({
-//   triggerElement: ".scroller",
-//   duration: "3000",
-// })
-//   .addIndicators()
-//   .addTo(controller);
-console.log(ufo2.position);
-// window.addEventListener("load", () => {
-//   gsap.to(landscape.position, {
-//     duration: 2,
-//     delay: 0,
-//     repeat: 0,
-//     z: 0,
-//     x: 0,
-//     y: 0,
-//     yoyo: false,
-//     ease: "slow(0.5, 0.8)",
-//   });
-// });
 var landObject = scene.getObjectByName("landscape3");
 
 // Fireflies
@@ -138,7 +80,7 @@ const scaleArray = new Float32Array(firefliesCount);
 
 for (let i = 0; i < firefliesCount; i++) {
   positionArray[i * 3 + 0] = (Math.random() - 0.5) * 25;
-  // positionArray[i * 3 + 1] = Math.random() * 1.5 * 10;
+
   positionArray[i * 3 + 1] = (Math.random() - 0.2) * 50;
   positionArray[i * 3 + 2] = (Math.random() - 0.5) * 15;
 
@@ -251,187 +193,40 @@ let texture20 = new THREE.TextureLoader().load(
 
 let texture21 = new THREE.TextureLoader().load("/textures/portfolio-text.jpg");
 // immediately use the texture for material creation
-// const material = new THREE.MeshBasicMaterial({ map: texture });
 
 const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
 const offSet2 = new Vector2(0, 0); // Mesh position
 const planeGeometry = new THREE.PlaneGeometry(1.2, 0.7, 5, 5);
 const planeGeometryText = new THREE.PlaneGeometry(2.5, 1.5, 1, 1);
-// console.log(geometry.parameters.width);
-
-// let textureArr = [texture, texture2];
-
-// console.log(texture.id);
-
-// switch (tex) {
-//   case textureArr[0].id === 4:
-//     tex = texture;
-//     break;
-//   case textureArr[1].id === 5:
-//     tex = texture2;
-// }
-// let tex = null;
-// for (let i = 0; i < textureArr.length; i++) {
-//   switch (textureArr[i]) {
-//     case textureArr[0]:
-//       tex = material1.uniforms.uTexture.value = texture;
-//       break;
-//     case textureArr[1]:
-//       tex = texture2;
-//   }
-// }
-
-//Debug test
-// var text = {
-//   message: "dat.gui",
-//   speed: 0.8,
-//   progress: 0,
-//   displayOutline: false,
-// };
-
-// var gui = new dat.GUI({ autoPlace: false });
-// var menu = gui.addFolder("folder");
-// menu.add(text, "message");
-// menu.add(text, "speed", -5, 5);
-// menu.add(text, "displayOutline");
-// menu.add(text, "progress", 0, 1, 0.001);
-
-// var customContainer = document.getElementById("my-gui-container");
-// customContainer.appendChild(gui.domElement);
-// console.log(text.progress);
-
-// const materialTest = new THREE.ShaderMaterial({
-//   uniforms: {
-//     time: { value: 1.0 },
-//     uTexture: { value: texture19 },
-//     uTextureSize: { value: new THREE.Vector2(100, 100) },
-//     uCorners: { value: new THREE.Vector4(1, 1, 1, 1) },
-//     uResolution: { value: new THREE.Vector2(1200, 1200) },
-//     uProgress: { value: 0.0 },
-//     resolution: { value: new THREE.Vector2() },
-//     uQuadSize: { value: new THREE.Vector2(300, 300) },
-//   },
-//   vertexShader: testVertexShader,
-//   fragmentShader: testFragmentShader,
-//   side: THREE.DoubleSide,
-//   wireframe: false,
-
-//   // opacity: 0.5,
-//   // transparent: true,
-// });
-
-// gsap to animate corners
-
-// gsap
-//   .timeline()
-//   .to(materialTest.uniforms.uCorners.value, {
-//     x: 1,
-// ease: "expo.in",
-// duration: 5,
-// })
-// .to(
-//   materialTest.uniforms.uCorners.value,
-//   {
-//     y: 1,
-// ease: "expo.in",
-// duration: 0.1,
-//   }
-//   // 0.1
-// )
-// .to(
-//   materialTest.uniforms.uCorners.value,
-//   {
-//     z: 1,
-// ease: "expo.in",
-// duration: 0.1,
-//   }
-//   // 0.2
-// )
-// .to(
-//   materialTest.uniforms.uCorners.value,
-//   {
-//     w: 1,
-//     // ease: "expo.in",
-//     // duration: 0.1,
-//   }
-//   // 0.3
-// );
-// const planeTest = new THREE.Mesh(planeGeometry, materialTest);
-// // new THREE.MeshBasicMaterial({ color: "#ff0000" })
-// scene.add(planeTest);
-
-// planeTest.postition.set(0, 0, 4);
-
-// planeTest.position.z = 0;
-// planeTest.position.y = 0;
-// planeTest.position.x = 0;
-// planeTest.rotation.z = 0.0;
 
 const material1 = new THREE.ShaderMaterial({
   uniforms: {
-    // uTime: { value: 0 },
     time: { value: 1.0 },
     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-    // uSize: { value: 50 },
+
     uTexture: { value: texture },
     uCorners: { value: new THREE.Vector4(1, 1, 1, 1) },
     uResolution: { value: new THREE.Vector2(1200, 1200) },
-    // uScale: { value: new THREE.Vector2(0.0, 0.0) },
-    // uAlpha: { value: 0.0 },
+
     uProgress: { value: 0.0 },
     uOffset: { value: new THREE.Vector2(0.0, 0.0) },
     uOffsetG: { value: new THREE.Vector2(0.0, 0.0) },
     scaleX: { type: "f", value: 1.0 },
     scaleY: { type: "f", value: 1.0 },
     scaleZ: { type: "f", value: 1.0 },
-    // resolution: { value: new THREE.Vector2() },
-    // uQuadSize: { value: new THREE.Vector2(300, 300) },
-    // uMouseTest: { value: new THREE.Vector2(0.0, 0.0) },
   },
   vertexShader: rgbVertexShader,
   fragmentShader: rgbFragmentShader,
   side: THREE.DoubleSide,
   wireframe: false,
-
-  // opacity: 0.5,
-  // transparent: true,
 });
-// let tl = gsap
-//   .timeline()
-//   .to(material1.uniforms.uCorners.value, {
-//     x: 1,
-//   })
-//   .to(material1.uniforms.uCorners.value, {
-//     y: 1,
-//   });
-// const material2 = new THREE.ShaderMaterial({
-//   uniforms: {
-//     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
 
-//     uTexture: {
-//       value: texture2,
-//     },
-
-//     uOffset: { value: new THREE.Vector2(0.0, 0.0) },
-//   },
-//   vertexShader: rgbVertexShader,
-//   fragmentShader: rgbFragmentShader,
-//   side: THREE.DoubleSide,
-//   wireframe: false,
-// });
 let material2 = material1.clone();
 material2.uniforms.uTexture.value = texture2;
 
 let material3 = material1.clone();
 material3.uniforms.uTexture.value = texture3;
-// material3.depthTest = true;
-// material3.depthWrite = true;
-// material3.transparent = true;
-// material3.blending = THREE.CustomBlending;
-// material3.blendEquation = THREE.MaxEquation;
-// material3.blendSrc = THREE.SrcAlphaFactor;
-// material3.blendDst = THREE.OneMinusSrcAlphaFactor;
 
 let material4 = material1.clone();
 material4.uniforms.uTexture.value = texture4;
@@ -563,7 +358,7 @@ let pos4 = -2.4;
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min) + min);
 };
 
 const planePos = () => {
@@ -593,7 +388,7 @@ const planePos = () => {
     plane.position.x += getRandomInt(-1.0, 2.0);
   });
 };
-//0, 0, 4
+
 plane1.position.set(2, -0.6, 4);
 plane1.rotation.set(0, 0, 0);
 plane2.position.set(0.3, -0.2, 4);
@@ -649,20 +444,6 @@ scene.add(thumbGroup);
 
 thumbGroup.position.y = -0.5;
 
-// let cubeArray = [];
-// for (var k = 0; k < 10; k++) {
-//   for (var j = 0; j < 10; j++) {
-//     for (var i = 0; i < 10; i++) {
-//       var object = new THREE.Mesh(geometry, material);
-//       object.position.x = i;
-//       object.position.y = j;
-//       object.position.z = k;
-//       cubeArray .push("object");
-//       scene.add(object);
-//     }
-//   }
-// }
-
 console.log(sizes);
 console.log(planeArr[0][4].position);
 window.addEventListener("resize", () => {
@@ -683,10 +464,6 @@ window.addEventListener("resize", () => {
     window.devicePixelRatio,
     2
   );
-  // renderer.domElement.addEventListener("click", onclick, true);
-  // alert("onclick");
-  // Update effect composer
-  // effectComposer.setSize(sizes.width, sizes.height);
 });
 
 const raycaster = new THREE.Raycaster();
@@ -705,12 +482,6 @@ scene.add(camera);
 scene.add(wireframe2);
 scene.add(water2);
 console.log(camera);
-// gui.add(camera.position, "y").min(-5).max(120);
-
-// Orbit controls
-// const controls = new OrbitControls(camera, canvas);
-// controls.target.set(0, 0, 0);
-// controls.enableDamping = true;
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -719,9 +490,6 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// console.log(landscape2.position.y);
-
-// console.log(sideText.innerHTML);
 window.addEventListener("mousemove", (event) => {
   mouse.x = (event.clientX / sizes.width) * 2 - 1;
   mouse.y = -(event.clientY / sizes.height) * 2 + 1;
@@ -751,26 +519,14 @@ window.addEventListener("mousemove", (event) => {
     plane20,
   ];
   const intersects = raycaster.intersectObjects(objectsToTest);
-  let thumbEase = "expo.inOut";
-  // console.log(sideText);
-  // object1.name = "object1";
+
   if (intersects.length) {
     if (!currentIntersect) {
-      console.log("mouse enter");
-      console.log(intersects[0].object.name);
-      // let sideText = document.getElementById("sideText");
-      // console.log(sideText);
-      // intersects[0].object == plane1
-      //   ? (sideText.innerHTML = "Facebook")
-      //   : (sideText.innerHTML = "");
-
-      // plane1.object.name == "plane1" ? (sideText.innerHTML = "Facebook") : null;
-      // console.log(sideText);
       gsap.to(intersects[0].object.scale, {
         duration: 1,
         delay: 0,
         repeat: 0,
-        // onComplete: onComplete,
+
         z: 1,
         x: 1.2,
         y: 1.2,
@@ -783,8 +539,7 @@ window.addEventListener("mousemove", (event) => {
           duration: 1,
           delay: 0,
           repeat: 0,
-          // onComplete: onComplete,
-          // y: Math.PI / 2,
+
           y: 0.2,
 
           ease: "expo.out",
@@ -796,70 +551,14 @@ window.addEventListener("mousemove", (event) => {
           duration: 1,
           delay: 0,
           repeat: 0,
-          // onComplete: onComplete,
-          // y: Math.PI / 2,
+
           y: -0.2,
 
           ease: "expo.out",
         });
       }
-      // gsap.to(sideText, {
-      //   duration: 1,
-      //   delay: 0,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-      //   z: 0,
-      //   x: window.innerWidth * 0.17,
-      //   y: 0,
-      //   opacity: 1,
-      //   ease: "expo.out",
-      // });
-
-      // corners distorion effect in
-      // gsap
-      //   .timeline()
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       x: 2,
-      //       ease: "slow(0.7, 0.7, false)",
-      //       delay: 0,
-      //       duration: 1,
-      //     },
-      //     0.03
-      //   )
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       y: 2,
-      //       ease: "slow(0.7, 0.7, false)",
-      //       duration: 1,
-      //     },
-      //     0.04
-      //   )
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       z: 2,
-      //       ease: "slow(0.7, 0.7, false)",
-      //       duration: 1,
-      //     },
-      //     0.05
-      //   )
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       w: 2,
-      //       ease: "back.out(-5.7)",
-      //       duration: 1,
-      //     },
-      //     0.06
-      //   );
-      console.log(intersects[0].object.scale);
     }
     currentIntersect = intersects[0];
-    // intersects[0].object.position.x = mouse.x * 0.2;
-    // intersects[0].object.position.y = mouse.y * 0.2;
   } else {
     if (currentIntersect) {
       console.log("mouse leave");
@@ -868,7 +567,7 @@ window.addEventListener("mousemove", (event) => {
         duration: 1,
         delay: 0,
         repeat: 0,
-        // onComplete: onComplete,
+
         z: 1,
         x: 1,
         y: 1,
@@ -879,61 +578,13 @@ window.addEventListener("mousemove", (event) => {
         duration: 1,
         delay: 0,
         repeat: 0,
-        // onComplete: onComplete,
-        // y: Math.PI / 2,
+
         y: 0,
 
         ease: "power2.out",
       });
-      // gsap.to(sideText, {
-      //   duration: 1,
-      //   delay: 1,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-      //   z: 0,
-      //   x: 0,
-      //   y: 0,
-      //   opacity: 0,
-      //   ease: "expo.out",
-      // });
-      // corners distorion effect out
-      // gsap
-      //   .timeline()
-      //   .to(materialTest.uniforms.uCorners.value, {
-      //     x: 1,
-      //     ease: "expo.out",
-      //     delay: 0,
-      //     duration: 0.1,
-      //   })
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       y: 1,
-      //       ease: "expo.out",
-      //       duration: 0.4,
-      //     },
-      //     0.01
-      //   )
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       z: 1,
-      //       ease: "expo.out",
-      //       duration: 0.8,
-      //     },
-      //     0.02
-      //   )
-      //   .to(
-      //     materialTest.uniforms.uCorners.value,
-      //     {
-      //       w: 1,
-      //       ease: "expo.out",
-      //       duration: 1.0,
-      //     },
-      //     0.03
-      //   );
     }
-    // sideText.innerHTML = "";
+
     currentIntersect = null;
   }
 });
@@ -951,19 +602,12 @@ let toggle2 = () => {
   clicked2 = clicked2 ? false : true;
 };
 
-// const domEvents = new THREEx.domEvents(camera, renderer.domElement);
-
-// domEvents.addEventListener(plane1, "click", (event) => {
-//   material1.wireframe = true;
-// });
 var images_modal = document.getElementById("myModal");
 var images_modalContact = document.getElementById("myModalContact");
-// var videos_modal = document.getElementById('video-model-div');
 
 // When the user clicks anywhere outside of the modal, close it
 
 window.onclick = function (event) {
-  // var video = document.getElementById("myVideoPlayer");
   function stopVideo() {
     videocontainer.pause();
     videocontainer.currentTime = 0;
@@ -985,19 +629,6 @@ window.onclick = function (event) {
   }
 };
 
-// window.onclick = function (event) {
-//   if (event.target == images_modalContact) {
-//     images_modalContact.style.display = "none";
-//     gsap.to(camera.position, {
-//       keyframes: [{ y: 0, z: 6, duration: 1, ease: "power3.inOut" }],
-//     });
-//     clicked = false;
-//   }
-// if (event.target == videos_modal) {
-//   videos_modal.style.display = "none";
-// }
-// };
-
 let contactButton = document.getElementById("contact");
 const contact = (event) => {
   contactButton.addEventListener("click", function (event) {
@@ -1009,27 +640,16 @@ const contact = (event) => {
     console.log(clicked);
     clicked
       ? gsap.to(camera.position, {
-          // duration: 3,
-          // y: 5,
-          // z: 2,
-          // ease: "circ.out",
-          // y: 3,
           z: -3,
           duration: 1,
           ease: "power3.inOut",
         })
       : gsap.to(camera.position, {
-          // duration: 3,
-          // y: 5,
-          // z: 2,
-          // ease: "circ.out",
-          // y: 0,
           z: 6,
           duration: 1,
           ease: "power3.inOut",
         });
 
-    // clicked ? modalsContact() : (images_modal.style.display = "none");
     if (clicked) {
       modalsContact();
       var video = document.getElementById("myVideoPlayer");
@@ -1043,17 +663,6 @@ const contact = (event) => {
     if (!clicked) {
       images_modalContact.style.display = "none";
     }
-    // gsap.to(camera.position, {
-    //   duration: 2,
-    //   delay: 1,
-    //   repeat: 0,
-
-    //   z: 0,
-    //   x: 0,
-    //   y: 0,
-    //   yoyo: false,
-    //   ease: "circ.out",
-    // });
   });
 };
 contact();
@@ -1088,9 +697,7 @@ let modalsContact = () => {
   var modal = document.getElementById("myModalContact");
   modal.style.display = "block";
 
-  // Get the <span> element that closes the modal
   var spanContact = document.getElementsByClassName("closeContact")[0];
-  // When the user clicks on <span> (x), close the modal
 
   spanContact.onclick = function () {
     modal.style.display = "none";
@@ -1102,23 +709,13 @@ let modalsContact = () => {
   };
 };
 console.log(currentIntersect);
-// var video = document.getElementById("myVideoPlayer");
-// function playVideo() {
-//   video.play();
-// }
 
-// var videobutton = document.getElementById("videolink1");
 var videocontainer = document.getElementById("videoclip");
 var videosource = document.getElementById("mp4video");
 var newmp4 = "/videos/FbStartBright_video_V9_ym7azq.mp4";
-
 var newmp42 = "/videos/boxtrolls_uwlqcu.mp4";
-
 var newmp43 = "/videos/Huddle_PushPull_Blue_2021web_tfga7a.mp4";
-// "https://player.vimeo.com/video/646596608";
-
 var newmp44 = "/videos/FA18_RN_React_3DAbstract_v007W_web_a518dl.mp4";
-
 var newmp45 = "/videos/Fox_Sports_web_pcxuaz.mp4";
 var newmp46 = "/videos/IbmWeb2_nyae84.mp4";
 var newmp47 = "/videos/ParanormanCredits_web2_khcvtx.mp4";
@@ -1136,7 +733,6 @@ var newmp418 = "/videos/track_town_web2_vyb4oo.mp4";
 var newmp419 = "/videos/planters_afur4u.mp4";
 var newmp420 = "/videos/LAIKA_TRU2011_N2D1_Generic_web_d5gffx.mp4";
 
-// document.getElementById("videolink1");
 window.addEventListener("click", () => {
   var title = document.getElementById("title");
   var desc = document.getElementById("desc");
@@ -1409,47 +1005,24 @@ window.addEventListener("click", () => {
   }
 });
 
-// const mouseOverTest = () => {
-//   window.addEventListener("mouseover", () => {
-//     console.log("mouse enter");
-
-//     gsap.to(objectsToTest[0], {
-//       scale: ((objectsToTest[0].scale.x = 1), (objectsToTest[0].scale.y = 1)),
-//     });
-//   });
-// };
 const clock = new THREE.Clock();
 
 let y = 0;
 let position = 0;
 
 window.addEventListener("wheel", onMouseWheel);
-// let div1 = document.getElementById("div1");
-// let yScroll = 0;
-// let yScroll2 = 0;
+
 let scrollPosition = 0;
 let scrollTarget = 0;
-// let scrollPosition2 = 0;
+
 let current = 0;
 let target3 = 0;
 let ease = 0.075;
-// let div1 = document.querySelector(".div1");
 
 function onMouseWheel(event) {
   scrollTarget = event.deltaY * 0.0007;
-  // yScroll2 = event.deltaY * 0.0007;
 }
 
-// let scrollEvent = () => {
-//   document.addEventListener("mousewheel", (e) => {
-//     scrollTarget = camera.position.y;
-//   });
-// };
-// scrollEvent();
-
-// document.addEventListener("scroll", function (e) {
-//   window.scrollY -= scrollPosition;
-// });
 console.log(camera.position.y);
 function lerp(start, end, t) {
   return start * (1 - t) + end * t;
@@ -1458,212 +1031,151 @@ let scrollY = window.scrollY;
 window.addEventListener("scroll", () => {
   scrollY = window.scrollY;
 });
-// console.log(materialTest);
-// let time = 0;
+
 let previousTime = 0;
 
 const tick = () => {
-  // console.log(materialTest.uniforms.uResolution);
-  // time += 0.05;
-  // materialTest.uniforms.time.value = time;
-  // materialTest.uniforms.uProgress.value = text.progress;
-
-  // tl.progress(text.progress);
-  // console.log(camera.position);
   let ease = 0.3;
   let ease2 = 0.00025;
   scrollPosition *=
     lerp(window.scrollY / sizes.height, window.scrollY, ease) * 0.0055;
-  // scrollPosition *= 0.655;
-  // scrollTarget *= 0.95;
 
-  // let scr = scrollTarget;
-  // console.log(scrollTarget);
-  // landscapeOn();
-  //renderer.render(scene, camera);
-  // target.x = (1 - mouse.x) * 0.2;
-  // target.y = (1 - mouse.y) * 0.2;
   const elapsedTime = clock.getElapsedTime();
   // Scroll
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
 
   let picDistort = (-scrollY * 0.003 - camera.position.y) * 2 * deltaTime;
-  // scrollPosition += yScroll;
-  // scrollPosition2 += yScroll2;
-  // yScroll *= 0.9;
-  // yScroll2 *= 0.9;
-  // camera.position.y -= scrollPosition;
-  // camera.position.y = -scrollY / sizes.height;
 
   camera.position.y += (-scrollY * 0.003 - camera.position.y) * 4 * deltaTime;
 
-  // camera.position.y -= scrollPosition * 0.3;
-
-  // console.log(camera.position.y);
   target.x = mouse.x * 0.08;
   target.y = mouse.y * 0.08;
 
   material1.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // -(target.y - offSet.y) * 0.3,
-    // offSet.x * 0.0,
-    // offSet.x * 0.0,
-    // lerp(scrollPosition, scrollTarget, ease) * 0.009
-    // (scr *= Math.cos(1) * 0.03),
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
-  // console.log(target2);
+
   material2.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
     picDistort
   );
   material3.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
 
   material4.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
     picDistort
   );
 
   material5.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
 
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
     picDistort
   );
 
   material6.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
 
   material7.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
 
   material8.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
 
   material9.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
 
   material10.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material11.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material12.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material13.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material14.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material15.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material16.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material17.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material18.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material19.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
   material20.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.3,
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
+
     picDistort
   );
 
   material21.uniforms.uOffset.value.set(
     (target.x - offSet.x) * 0.1,
 
-    // lerp(scrollPosition, scrollTarget, ease2) / 2
     picDistort
   );
 
-  // gsap.to(ufo2.position, {
-  //   // bezier: flightPath,
-  //   ease: "Power1.easeInOut",
-  //   duration: 1,
-  //   // x: scrollPosition * 500,
-  //   y: -scrollPosition * 500,
-  //   // onComplete: (ufo2.position.x = 2),
-  // });
-  // console.log(ufo2.position.x);
-
-  // ufo2.position.x += scrollY * 0.003;
   ufo2.rotation.y += -picDistort * 1.7;
   ufo2.rotation.x -= -picDistort * 0.2;
   ufo2.position.x += -picDistort * 1.7;
   ufo2.position.y += picDistort * 1.5;
   ufo2.position.z += picDistort * 1.35;
 
-  // console.log(ufo2.position.x);
-  // Default camera setting
   camera.rotation.x += 0.1 * (target.y - camera.rotation.x);
   camera.rotation.y += 0.1 * (target.x - camera.rotation.y);
   renderer.render(scene, camera);
-  // camera.position.y = y * 0.002;
-  // function onMouseWheel(ev) {
-  //   event.preventDefault();
-
-  //   camera.position.y += event.deltaY / 1000;
-
-  //   // prevent scrolling beyond a min/max value
-  //   camera.position.clampScalar(0, 10);
-  // }
-  //Clock
-  // console.log(camera.rotation.y);
-
-  // ufo.position.x = Math.sin(elapsedTime / 3);
-  // ufo.position.z = Math.sin(elapsedTime / 15);
 
   const ufoAngle = -elapsedTime * 0.18;
   ufo.position.y = Math.sin(elapsedTime);
@@ -1671,50 +1183,8 @@ const tick = () => {
   ufo.position.z = Math.sin(ufoAngle) * (8 + Math.sin(elapsedTime * 0.5));
   ufo.rotation.y = elapsedTime;
 
-  // ufo.position.y = Math.sin(elapsedTime * 4) + Math.sin(elapsedTime * 2.5);
-  // Cast a ray
-  // raycaster.setFromCamera(mouse, camera);
-
-  // const objectsToTest = [plane1];
-  // const intersects = raycaster.intersectObjects(objectsToTest);
-
-  // if (intersects.length) {
-  //   if (currentIntersect === null) {
-  //     console.log("mouse enter");
-  //   }
-  //   // mouseOverTest();
-  //   currentIntersect = intersects[0];
-  // } else {
-  //   if (currentIntersect) {
-  //     console.log("mouse leave");
-  //   }
-  //   currentIntersect = null;
-  // }
-
-  // for (const object of objectsToTest) {
-  //   object.material.color.set("red");
-  // }
-
-  // for (const intersect of intersects) {
-  //   intersect.object.material.color.set("blue");
-  // }
-
-  // if (intersects.length) {
-  //   if (currentIntersect === null) {
-  //     console.log("mouse enter");
-  //   }
-  //   currentIntersect = intersects[0];
-  // } else {
-  //   if (currentIntersect) {
-  //     console.log("mouse leave");
-  //   }
-  //   currentIntersect = null;
-  // }
-
   // Update materials
   firefliesMaterial.uniforms.uTime.value = elapsedTime;
-
-  // plane1On();
 
   window.requestAnimationFrame(tick);
 };
