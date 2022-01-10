@@ -2,6 +2,7 @@ uniform sampler2D uTexture;
 uniform float uAlpha;
 uniform float uProgress;
 uniform vec2 uOffset;
+uniform vec2 uOffsetG;
 uniform vec2 u_mouse;
 varying vec2 vUv;
 
@@ -90,7 +91,7 @@ varying vec2 vUv;
 
 vec3 rgbShift(sampler2D textureimage, vec2 uv, vec2 offset){
   float r = texture2D(textureimage, uv + offset * 2.5).r ;
-  float g = texture2D(textureimage, uv + offset * 7.0).g ;
+  float g = texture2D(textureimage, uv + uOffsetG * 7.0).g ;
   float b = texture2D(textureimage, uv + offset * 1.5).b ;
   // vec2 gb = texture2D(textureimage, uv).gb;
   return vec3(r, g, b);

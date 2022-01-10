@@ -257,7 +257,7 @@ const sizes2 = new THREE.Vector2(2, 1.5); // Mesh size
 const offSet = new Vector2(0, 0); // Mesh position
 const offSet2 = new Vector2(0, 0); // Mesh position
 const planeGeometry = new THREE.PlaneGeometry(1.2, 0.7, 5, 5);
-const planeGeometryText = new THREE.PlaneGeometry(2, 1, 5, 5);
+const planeGeometryText = new THREE.PlaneGeometry(2.5, 1.5, 1, 1);
 // console.log(geometry.parameters.width);
 
 // let textureArr = [texture, texture2];
@@ -381,6 +381,7 @@ const material1 = new THREE.ShaderMaterial({
     // uAlpha: { value: 0.0 },
     uProgress: { value: 0.0 },
     uOffset: { value: new THREE.Vector2(0.0, 0.0) },
+    uOffsetG: { value: new THREE.Vector2(0.0, 0.0) },
     scaleX: { type: "f", value: 1.0 },
     scaleY: { type: "f", value: 1.0 },
     scaleZ: { type: "f", value: 1.0 },
@@ -492,7 +493,7 @@ material21.blending = THREE.CustomBlending;
 material21.blendEquation = THREE.MaxEquation;
 material21.blendSrc = THREE.SrcAlphaFactor;
 material21.blendDst = THREE.OneMinusSrcAlphaFactor;
-
+material21.uniforms.uOffsetG.value = [0.0, 0.0];
 const plane1 = new THREE.Mesh(planeGeometry, material1);
 plane1.name = "plane1";
 const plane2 = new THREE.Mesh(planeGeometry, material2);
@@ -594,10 +595,10 @@ const planePos = () => {
 };
 //0, 0, 4
 plane1.position.set(2, -0.6, 4);
-plane1.rotation.set(0, 2.5, 0);
+plane1.rotation.set(0, 0, 0);
 plane2.position.set(0.3, -0.2, 4);
 plane3.position.set(-1.5, -0.5, 4);
-plane3.rotation.set(0, 1, 0);
+plane3.rotation.set(0, 0, 0);
 plane4.position.set(-1, -1.5, 4);
 plane5.position.set(1, -1.5, 4);
 plane6.position.set(-0.3, -2.5, 4);
@@ -615,7 +616,7 @@ plane17.position.set(-0.3, -14, 4);
 plane18.position.set(0, -15, 4);
 plane19.position.set(-1.9, -14.3, 4);
 plane20.position.set(2, -14.5, 4);
-plane21.position.set(0, 0.3, 5);
+plane21.position.set(0, 0.5, 4.5);
 
 const sizes = {
   width: window.innerWidth,
@@ -777,16 +778,31 @@ window.addEventListener("mousemove", (event) => {
         ease: "expo.out",
       });
 
-      // gsap.to(intersects[0].object.rotation, {
-      //   duration: 1,
-      //   delay: 0,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-      //   // y: Math.PI / 2,
-      //   y: 0.2,
+      if (mouse.x < 0) {
+        gsap.to(intersects[0].object.rotation, {
+          duration: 1,
+          delay: 0,
+          repeat: 0,
+          // onComplete: onComplete,
+          // y: Math.PI / 2,
+          y: 0.2,
 
-      //   ease: "expo.out",
-      // });
+          ease: "expo.out",
+        });
+      }
+
+      if (mouse.x > 0) {
+        gsap.to(intersects[0].object.rotation, {
+          duration: 1,
+          delay: 0,
+          repeat: 0,
+          // onComplete: onComplete,
+          // y: Math.PI / 2,
+          y: -0.2,
+
+          ease: "expo.out",
+        });
+      }
       // gsap.to(sideText, {
       //   duration: 1,
       //   delay: 0,
@@ -859,16 +875,16 @@ window.addEventListener("mousemove", (event) => {
 
         ease: "expo.out",
       });
-      // gsap.to(currentIntersect.object.rotation, {
-      //   duration: 0.5,
-      //   delay: 0,
-      //   repeat: 0,
-      //   // onComplete: onComplete,
-      //   // y: Math.PI / 2,
-      //   y: 0,
+      gsap.to(currentIntersect.object.rotation, {
+        duration: 1,
+        delay: 0,
+        repeat: 0,
+        // onComplete: onComplete,
+        // y: Math.PI / 2,
+        y: 0,
 
-      //   ease: "power2.out",
-      // });
+        ease: "power2.out",
+      });
       // gsap.to(sideText, {
       //   duration: 1,
       //   delay: 1,
@@ -1606,7 +1622,7 @@ const tick = () => {
   );
 
   material21.uniforms.uOffset.value.set(
-    (target.x - offSet.x) * 0.3,
+    (target.x - offSet.x) * 0.1,
 
     // lerp(scrollPosition, scrollTarget, ease2) / 2
     picDistort
