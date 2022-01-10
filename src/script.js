@@ -464,7 +464,7 @@ window.addEventListener("resize", () => {
   );
 });
 
-const raycaster = new THREE.Raycaster();
+let raycaster = new THREE.Raycaster();
 let currentIntersect = null;
 
 // Camera
@@ -604,12 +604,11 @@ var images_modal = document.getElementById("myModal");
 var images_modalContact = document.getElementById("myModalContact");
 
 // When the user clicks anywhere outside of the modal, close it
-
+function stopVideo() {
+  videocontainer.pause();
+  videocontainer.currentTime = 0;
+}
 window.onclick = function (event) {
-  function stopVideo() {
-    videocontainer.pause();
-    videocontainer.currentTime = 0;
-  }
   if (event.target == images_modal) {
     images_modal.style.display = "none";
     stopVideo();
@@ -630,6 +629,7 @@ window.onclick = function (event) {
 let contactButton = document.getElementById("contact");
 const contact = (event) => {
   contactButton.addEventListener("click", function (event) {
+    currentIntersect = null;
     toggle();
     clicked2 = false;
     clicked
@@ -650,11 +650,13 @@ const contact = (event) => {
 
     if (clicked) {
       modalsContact();
-      var video = document.getElementById("myVideoPlayer");
+      let video = document.getElementById("myModal");
+      video.style.display = "none";
       function stopVideo() {
         videocontainer.pause();
         videocontainer.currentTime = 0;
       }
+
       images_modal.style.display = "none";
       stopVideo();
     }
@@ -1037,7 +1039,7 @@ const tick = () => {
   let ease2 = 0.00025;
   scrollPosition *=
     lerp(window.scrollY / sizes.height, window.scrollY, ease) * 0.0055;
-
+  // console.log(mouse.y);
   const elapsedTime = clock.getElapsedTime();
   // Scroll
   const deltaTime = elapsedTime - previousTime;
