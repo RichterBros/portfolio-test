@@ -68,8 +68,6 @@ gltfLoader.load("/models/ufo3.glb", (gltf) => {
   scene.add(ufo2);
 });
 
-var landObject = scene.getObjectByName("landscape3");
-
 // Fireflies
 // Geometry
 const firefliesGeometry = new THREE.BufferGeometry();

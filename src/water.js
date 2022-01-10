@@ -137,7 +137,7 @@ scene.add(mesh);
 const water = new THREE.Mesh(waterGeometry, waterMaterial);
 water.rotation.x = -Math.PI * 0.2;
 water.position.y = -1;
-water.position.z = -8;
+water.position.z = -7;
 
 scene.add(water);
 
