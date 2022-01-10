@@ -772,8 +772,8 @@ window.addEventListener("mousemove", (event) => {
         repeat: 0,
         // onComplete: onComplete,
         z: 1,
-        x: 1.5,
-        y: 1.5,
+        x: 1.2,
+        y: 1.2,
 
         ease: "expo.out",
       });
